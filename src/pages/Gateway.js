@@ -38,13 +38,13 @@ const Gateway = () => {
       {
         formType === "login" &&
             <Form 
-                formType={formType}
+                formType={"login"}
             />
       }
       {
           formType === "create"  &&
             <Form
-                formType={formType}
+                formType={"create"}
             />
       }
     </main>

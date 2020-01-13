@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import Form from './../components/form/Form';
+import GatewayNav from './../components/nav/gatewayNav';
 const Gateway = () => {
     const [formType, setformType] = useState("welcome");
 
@@ -10,6 +11,8 @@ const Gateway = () => {
                 return setformType("login");
             case "btn-create":
                 return setformType("create");
+            case "btn-back-welcome":
+                return setformType("welcome");
             default:
                 return;
         }
@@ -21,31 +24,32 @@ const Gateway = () => {
             formType === "welcome" && 
                 <section>
                     welcome to diabetes supply manager
-                    <nav>
-                        <button
-                            id="btn-login"
-                            onClick={handleClick}>
-                            Login
-                        </button>
-                        <button
-                            id="btn-create"
-                            onClick={handleClick}>                        
-                            Create Account
-                        </button>
-                    </nav>
+                    <GatewayNav
+                        handleClick={handleClick}
+                        formType={formType}
+                     />
                 </section>
         }
       {
         formType === "login" &&
+        <>
             <Form 
-                formType={"login"}
-            />
+                formType={"login"}/>
+
+            <GatewayNav
+                        handleClick={handleClick}
+                        formType={formType}/>
+        </>
       }
       {
-          formType === "create"  &&
+        formType === "create"  &&
+        <>
             <Form
-                formType={"create"}
-            />
+                formType={"create"}/>
+            <GatewayNav
+                handleClick={handleClick}
+                formType={formType}/>
+        </>
       }
     </main>
   )

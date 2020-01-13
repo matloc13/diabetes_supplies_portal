@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 import useInput from './../../utilHooks/useInput';
 import useFormSubmit from './../../utilHooks/useFormSubmit';
 const Form = ({formType}) => {
-    const {value, bind, reset } = useInput();
+const { value:firstName, bind:bindfirstName, reset:resetfirstName } = useInput('');
+const { value:lastName, bind:bindlastName, reset:resetlastName } = useInput('');
+const { value:age, bind:bindage, reset:resetage } = useInput('');
+const { value:birthDate, bind:bindbirthDate, reset:resetbirthDate } = useInput('');
+const { value:password, bind:bindpassword, reset:resetpassword } = useInput('');
+const { value:email, bind:bindemail, reset:resetemail } = useInput('');
+  
+    // const {value, bind, reset } = useInput();
     const [submitting, response, handleCreate] = useFormSubmit();
     const [formInfo, setformInfo] = useState({
         email: " ",
-        username: " ",
+        firstName: " ",
         password: " "
     })
     const handleSubmit = (e) => {
@@ -14,7 +21,10 @@ const Form = ({formType}) => {
         switch (formType) {
             case "create":
                 console.dir(e)
-                return handleCreate()
+                resetfirstName();
+                resetpassword();
+                resetemail();
+                return handleCreate(e, formInfo);
             case "login":
                 return;
             default:
@@ -23,64 +33,104 @@ const Form = ({formType}) => {
   }
 
   useEffect(() => {
-        console.log(value);
-        if (value) {
+        console.log(email || firstName || password);
+        if (email || firstName || password) {
             if (formType === "create") {
                 setformInfo( {...formInfo,
-                    email: value.email,
-                    username: value.username,
-                    password: value.password
+                    email: email,
+                    firstName: firstName,
+                    password: password
                   }
                 )
           } else {
             setformInfo( {...formInfo,
-                username: value.username,
-                password: value.password
+                firstName: firstName,
+                password: password
               }
             )
           }
         }
-        
-   
-    
       return () => {
           
       };
-  }, [value])
+  }, [firstName, password, email, formType]);
 
   console.log(formType);
   
   return (
         <form onSubmit={handleSubmit}>
+           
             {
                 formType === "create" &&
+                <>
+                    <label htmlFor="firstName">
+                        First Name
+                        <input 
+                            id="firstName" 
+                            type="text"
+                    {...bindfirstName}/>
+                    </label>
+
+                    <label htmlFor="lastName">
+                        Last Name
+                        <input 
+                            id="lastName" 
+                            type="text"
+                            {...bindlastName}/>
+                    </label>
+
                     <label htmlFor="email">
-                        add email
+                        Email
                         <input 
                             id="email"
                             type="email"
-                            {...bind}/>
+                            {...bindemail}/>
                     </label>
+
+                    <label htmlFor="age">
+                        Age
+                    <input 
+                        id="age" 
+                        type="text"
+                        {...bindage}/>
+                    </label>
+
+                    <label htmlFor="birthDate">
+                        Birth Date
+                        <input 
+                            id="birthDate" 
+                            type="date"
+                            {...bindbirthDate}/>
+                    </label>
+                </>
             }
-            <label htmlFor="username">
-                {formType} username
-                <input 
-                    id="username" 
-                    type="text"
-                    {...bind}/>
-            </label>
-            <label htmlFor="password">
-                {formType} password
-                <input 
-                    id="username" 
-                    type="password"
-                    {...bind}/>
-            </label>
-            <label htmlFor="submit">
-                <input 
-                    type="submit" 
-                    value={formType }/>
-            </label>
+           {
+               formType === "login" &&
+               <>
+                    <label htmlFor="email">
+                        {formType} email
+                        <input 
+                            id="email" 
+                            type="text"
+                            {...bindemail}/>
+                    </label>
+
+                    <label htmlFor="password">
+                        {formType} password
+                        <input 
+                            id="firstName" 
+                            type="password"
+                            {...bindpassword}/>
+                    </label>
+
+                    <label htmlFor="submit">
+                        <input 
+                            type="submit" 
+                            value={formType }/>
+                    </label>
+              </>
+           }
+         
         </form>
   )
 }

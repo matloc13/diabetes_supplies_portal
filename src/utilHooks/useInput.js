@@ -1,12 +1,10 @@
 import { useState } from 'react';
 
-const useInput = () => {
-    const [value, setValue] = useState()
-    const handleInput = (e) => {
-        e.persist();
-        setValue({[e.target.id]: e.target.value})
+const useInput = (init) => {
+    const [value, setValue] = useState(init)
 
-  }
+
+  
     return {
         value,
         setValue,
@@ -14,9 +12,10 @@ const useInput = () => {
         bind: {
             value,
             onChange: e => {
-                setValue(e.target.value);
+                setValue( e.target.value);
             }
         }
     }
 }
+
 export default useInput;

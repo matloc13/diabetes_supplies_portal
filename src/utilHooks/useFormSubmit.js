@@ -27,10 +27,10 @@ const useFormSubmit = () => {
                     method: 'POST',
                     body: JSON.stringify({
                         email: form.email,
-                        firstName: form.firstName,
-                        lastName: form.lastName,
+                        firstName: form.fName,
+                        lastName: form.lName,
                         age: form.age,
-                        birthDate: form.birthDate,
+                        birthDate: form.bDate,
                         password: form.password
                     }),
                     headers: {
@@ -50,7 +50,7 @@ const useFormSubmit = () => {
                             payload: {
                                 email: json.email,
                                 firstName: json.firstName,
-                                lastName: json.email,
+                                lastName: json.lastName,
                                 age: json.age,
                                 birthDate: json.birthDate,
                                 password: json.password,
@@ -93,7 +93,7 @@ const useFormSubmit = () => {
                             payload: {
                                 email: json.email,
                                 firstName: json.firstName,
-                                lastName: json.email,
+                                lastName: json.lastName,
                                 age: json.age,
                                 birthDate: json.birthDate,
                                 password: json.password,

@@ -2,50 +2,63 @@ import React, { useEffect, useState } from 'react';
 import useInput from './../../utilHooks/useInput';
 import useFormSubmit from './../../utilHooks/useFormSubmit';
 const Form = ({formType}) => {
-const { value:firstName, bind:bindfirstName, reset:resetfirstName } = useInput('');
-const { value:lastName, bind:bindlastName, reset:resetlastName } = useInput('');
+    
+const { value:fName, bind:bindfName, reset:resetfName } = useInput('');
+const { value:lName, bind:bindlName, reset:resetlName } = useInput('');
 const { value:age, bind:bindage, reset:resetage } = useInput('');
-const { value:birthDate, bind:bindbirthDate, reset:resetbirthDate } = useInput('');
+const { value:bDate, bind:bindbDate, reset:resetbDate } = useInput('');
 const { value:password, bind:bindpassword, reset:resetpassword } = useInput('');
 const { value:email, bind:bindemail, reset:resetemail } = useInput('');
   
-    // const {value, bind, reset } = useInput();
-    const [submitting, response, handleCreate] = useFormSubmit();
-    const [formInfo, setformInfo] = useState({
-        email: " ",
-        firstName: " ",
-        password: " "
-    })
+    const [submitting, response, handleCreate, handleLogin] = useFormSubmit();
+    const [formInfo, setformInfo] = useState(null);
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         switch (formType) {
             case "create":
                 console.dir(e)
-                resetfirstName();
+                resetfName();
+                resetlName();
+                resetage();
+                resetbDate();
                 resetpassword();
                 resetemail();
                 return handleCreate(e, formInfo);
             case "login":
-                return;
+                resetfName();
+                resetlName();
+                resetage();
+                resetbDate();
+                resetpassword();
+                resetemail();
+                return handleLogin(e, formInfo);
             default:
                 throw new Error('did not submit');
         }
   }
 
+    if (response) {
+        console.log(response);
+    }
+
   useEffect(() => {
-        console.log(email || firstName || password);
-        if (email || firstName || password) {
+        // console.log(email || firstName || password);
+        if (email || fName || password) {
             if (formType === "create") {
                 setformInfo( {...formInfo,
-                    email: email,
-                    firstName: firstName,
-                    password: password
+                    email,
+                    fName,
+                    lName,
+                    age,
+                    bDate,
+                    password
                   }
                 )
           } else {
             setformInfo( {...formInfo,
-                firstName: firstName,
-                password: password
+                email,
+                password
               }
             )
           }
@@ -53,14 +66,17 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
       return () => {
           
       };
-  }, [firstName, password, email, formType]);
+  }, [ email, fName, lName, age, bDate, password, formType ]);
 
-  console.log(formType);
-  
+//   console.log(formType); 
   return (
         <form onSubmit={handleSubmit}>
-           
             {
+                submitting &&
+                <h1>Submitting</h1>
+            }
+           
+            {   // create account component
                 formType === "create" &&
                 <>
                     <label htmlFor="firstName">
@@ -68,7 +84,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                         <input 
                             id="firstName" 
                             type="text"
-                    {...bindfirstName}/>
+                    {...bindfName}/>
                     </label>
 
                     <label htmlFor="lastName">
@@ -76,7 +92,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                         <input 
                             id="lastName" 
                             type="text"
-                            {...bindlastName}/>
+                            {...bindlName}/>
                     </label>
 
                     <label htmlFor="email">
@@ -100,11 +116,26 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                         <input 
                             id="birthDate" 
                             type="date"
-                            {...bindbirthDate}/>
+                            {...bindbDate}/>
+                    </label>
+
+                    <label htmlFor="password">
+                        {formType} password
+                        <input 
+                            id="firstName" 
+                            type="password"
+                            {...bindpassword}/>
+                    </label>
+
+                    <label htmlFor="submit">
+                        <input 
+                            type="submit" 
+                            value={formType }/>
                     </label>
                 </>
             }
-           {
+
+           {    // login component
                formType === "login" &&
                <>
                     <label htmlFor="email">
@@ -134,4 +165,5 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
         </form>
   )
 }
+
 export default Form;  

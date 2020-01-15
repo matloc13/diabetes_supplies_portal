@@ -5,6 +5,8 @@ import Gateway from './pages/Gateway';
 import Dashboard from './pages/Dashboard';
 import DeviceProfile from './components/device/DeviceProfile';
 import UserProfile from './components/user/UserProfile';
+import AddDevice from './pages/AddDevice';
+import EditUser from './pages/EditUser';
 
 import './App.scss';
 
@@ -20,6 +22,9 @@ const App = () => {
                     <Router>
                         <Dashboard path="/"/>
                             <UserProfile path="userProfile"/>
+                            <AddDevice path="/addDevice" />
+                            <EditUser path="/editUser" />
+
                             <DeviceProfile path="deviceProfile"/>
                             
                     </Router>

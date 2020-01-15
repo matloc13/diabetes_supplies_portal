@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import UserContext from './../../contexts/userContext';
+import UserNav from './../nav/UserNav';
 
 const UserProfile = () => {
   const { user } = useContext(UserContext);
@@ -7,12 +8,15 @@ const UserProfile = () => {
   
   return (
     <main>
+      <UserNav/>
         <aside>
+          <p>
+            {`hello ${user.firstName} welcome back to your Diabetes Supply Manager`}
+          </p>
             <ul>
-                <li>{user.firstName}</li>
-                <li>{user.lastName}</li>
-                <li>{user.age}</li>
-                <li>{user.birtDate}</li>
+                <li>full name: {user.firstName} {user.lastName}</li>
+                <li>age: {user.age}</li>
+                <li>birth date: {user.birthDate}</li>
             </ul>
         </aside>
         <aside>

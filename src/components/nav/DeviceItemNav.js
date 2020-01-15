@@ -1,12 +1,13 @@
 import React from 'react';
+import './_nav.scss';
 import {DeviceFailures, DeviceChanges, DeviceAquired} from './../device/index';
 const DeviceItemNav = () => {
     return (
-        <section>
+        <section className="deviceItem">
             <DeviceFailures />
             <DeviceChanges />
             <DeviceAquired />
-   </section>
+        </section>
     )
 }
 export default DeviceItemNav;

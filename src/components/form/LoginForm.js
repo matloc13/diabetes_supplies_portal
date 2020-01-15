@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import useInput from '../../utilHooks/useInput';
 import useAuth from '../../utilHooks/useAuth';
+import './_form.scss';
+
 const LoginForm = ({formType}) => {
     
 const { value:fName, bind:bindfName, reset:resetfName } = useInput('');
@@ -66,7 +68,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
 
 //   console.log(formType); 
   return (
-    <div className={'formNode'}>
+
         <form onSubmit={handleSubmit}>
             {
                 submitting &&
@@ -160,7 +162,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
            }
          
         </form>
-    </div>
+
   )
 }
 

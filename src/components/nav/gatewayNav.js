@@ -1,7 +1,7 @@
 import React from 'react';
 const GatewayNav = ({handleClick, formType}) => {
     return (
-        <nav>
+        <nav className="gateway">
             {
             formType === "welcome" &&
             <>

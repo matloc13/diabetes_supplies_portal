@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import LoginForm from '../components/form/LoginForm';
 import GatewayNav from './../components/nav/gatewayNav';
+
 const Gateway = () => {
 
-    
     const [formType, setformType] = useState("welcome");
 
     const handleClick = (e) => {
@@ -25,7 +25,7 @@ const Gateway = () => {
         {
             formType === "welcome" && 
                 <section>
-                    welcome to diabetes supply manager
+                    <h3>welcome to diabetes supply manager</h3>
                     <GatewayNav
                         handleClick={handleClick}
                         formType={formType}

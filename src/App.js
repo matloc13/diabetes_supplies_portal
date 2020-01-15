@@ -6,7 +6,7 @@ import Dashboard from './pages/Dashboard';
 import DeviceProfile from './components/device/DeviceProfile';
 import UserProfile from './components/user/UserProfile';
 
-import './App.css';
+import './App.scss';
 
 const App = () => {
     const {user} = useContext(UserContext);
@@ -14,7 +14,7 @@ const App = () => {
     
     return (
         <div className="App">
-           
+           {/* ideal place for react.lazy() */}
                 {
                     user.isAuthenticated ?
                     <Router>
@@ -25,7 +25,9 @@ const App = () => {
                     </Router>
 
                     :
-                        <Gateway path="/gateway"/>  
+                    <Router>
+                        <Gateway path="/"/>  
+                    </Router>
                 }
            
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import useInput from './../../utilHooks/useInput';
-import useFormSubmit from './../../utilHooks/useFormSubmit';
-const Form = ({formType}) => {
+import useInput from '../../utilHooks/useInput';
+import useAuth from '../../utilHooks/useAuth';
+const LoginForm = ({formType}) => {
     
 const { value:fName, bind:bindfName, reset:resetfName } = useInput('');
 const { value:lName, bind:bindlName, reset:resetlName } = useInput('');
@@ -10,8 +10,9 @@ const { value:bDate, bind:bindbDate, reset:resetbDate } = useInput('');
 const { value:password, bind:bindpassword, reset:resetpassword } = useInput('');
 const { value:email, bind:bindemail, reset:resetemail } = useInput('');
   
-    const [submitting, response, handleCreate, handleLogin] = useFormSubmit();
+    const [submitting, response, handleCreate, handleLogin] = useAuth();
     const [formInfo, setformInfo] = useState(null);
+    // const [isMounted, setIsMounted] = useState(false)
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,14 +38,9 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                 throw new Error('did not submit');
         }
   }
-
-    if (response) {
-        console.log(response);
-    }
-
   useEffect(() => {
         // console.log(email || firstName || password);
-        if (email || fName || password) {
+        if (email || fName || lName || age || bDate || password) {
             if (formType === "create") {
                 setformInfo( {...formInfo,
                     email,
@@ -64,12 +60,13 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
           }
         }
       return () => {
-          
+
       };
-  }, [ email, fName, lName, age, bDate, password, formType ]);
+  }, [ email, fName, lName, age, bDate, password, formType, response ]);//eslint-disable-line
 
 //   console.log(formType); 
   return (
+    <div className={'formNode'}>
         <form onSubmit={handleSubmit}>
             {
                 submitting &&
@@ -84,7 +81,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                         <input 
                             id="firstName" 
                             type="text"
-                    {...bindfName}/>
+                            {...bindfName}/>
                     </label>
 
                     <label htmlFor="lastName">
@@ -163,7 +160,8 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
            }
          
         </form>
+    </div>
   )
 }
 
-export default Form;  
+export default LoginForm;  

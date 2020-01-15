@@ -1,9 +1,14 @@
 import React from 'react';
+import NewItem from './../newItem/NewItem';
+
 const DeviceChanges = () => {
+
     return (
             <article>
+                <h2>device changes</h2>
+                <NewItem
+                    itemType="device change" />               
                 <ul>
-                    <h2>device changes</h2>
                     <li></li>
                 </ul>
             </article>

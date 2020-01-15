@@ -1,23 +1,33 @@
 import React, { useContext } from 'react';
+import { Router } from '@reach/router';
 import UserContext from './contexts/userContext';
 import Gateway from './pages/Gateway';
-import UserProfile from './pages/UserProfile';
+import Dashboard from './pages/Dashboard';
+import DeviceProfile from './components/device/DeviceProfile';
+import UserProfile from './components/user/UserProfile';
+
 import './App.css';
 
 const App = () => {
-    const {user, dispatch} = useContext(UserContext);
+    const {user} = useContext(UserContext);
     console.log(user);
     
     return (
         <div className="App">
-            <>
+           
                 {
                     user.isAuthenticated ?
-                        <UserProfile />
+                    <Router>
+                        <Dashboard path="/"/>
+                            <UserProfile path="userProfile"/>
+                            <DeviceProfile path="deviceProfile"/>
+                            
+                    </Router>
+
                     :
-                        <Gateway />  
+                        <Gateway path="/gateway"/>  
                 }
-            </>
+           
         </div>
     );
 }

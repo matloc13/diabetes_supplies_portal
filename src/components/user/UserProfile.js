@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import UserContext from './../contexts/userContext';
-import {DeviceFailures, DeviceChanges, DeviceAquired} from './../components/device';
+import UserContext from './../../contexts/userContext';
+
 const UserProfile = () => {
-  const {user, dispatch} = useContext(UserContext);
+  const { user } = useContext(UserContext);
   console.log(user);
   
   return (
@@ -15,12 +15,12 @@ const UserProfile = () => {
                 <li>{user.birtDate}</li>
             </ul>
         </aside>
-        
-        <section>
-            <DeviceFailures />
-            <DeviceChanges />
-            <DeviceAquired />
-       </section>
+        <aside>
+          <h1>lists of users devices</h1>
+        </aside>
+
+
+
     </main>
   )
 }

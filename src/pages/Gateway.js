@@ -1,7 +1,9 @@
-import React, { useState} from 'react';
-import Form from './../components/form/Form';
+import React, { useState } from 'react';
+import LoginForm from '../components/form/LoginForm';
 import GatewayNav from './../components/nav/gatewayNav';
 const Gateway = () => {
+
+    
     const [formType, setformType] = useState("welcome");
 
     const handleClick = (e) => {
@@ -33,18 +35,17 @@ const Gateway = () => {
       {
         formType === "login" &&
         <>
-            <Form 
+            <LoginForm 
                 formType={"login"}/>
-
             <GatewayNav
-                        handleClick={handleClick}
-                        formType={formType}/>
+                handleClick={handleClick}
+                formType={formType}/>
         </>
       }
       {
         formType === "create"  &&
         <>
-            <Form
+            <LoginForm
                 formType={"create"}/>
             <GatewayNav
                 handleClick={handleClick}

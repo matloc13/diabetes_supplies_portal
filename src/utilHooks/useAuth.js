@@ -1,14 +1,14 @@
 import { useState, useContext } from 'react';
-import BASE_URL from './../constants';
-import UserContext from './../contexts/userContext';
+import BASE_URL from '../constants';
+import UserContext from '../contexts/userContext';
 
-const useFormSubmit = () => {
-    const [submitting, setSubmitting] = useState(false);
-    const [response, setResponse] = useState({});
-    const {user, dispatch} = useContext(UserContext);
+const useAuth = () => {
+    const [ submitting, setSubmitting ] = useState(false);
+    const [ response, setResponse ] = useState({});
+    const { dispatch } = useContext(UserContext);
 
     const handleCreate = (e, form) => {
-        e.persist()
+        e.persist();
         // console.dir(e)
         // console.log(form);
         execCreate(form)
@@ -19,7 +19,7 @@ const useFormSubmit = () => {
         execLogin(form)
     }
 
-        const execCreate = async (form) => {
+        const execCreate = async (form, ac) => {
             // console.log(form);
             try {
                 setSubmitting(true);
@@ -37,6 +37,7 @@ const useFormSubmit = () => {
                         'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
                     }
+                    
                 });
             
                 const json = await res.json();
@@ -54,7 +55,8 @@ const useFormSubmit = () => {
                                 age: json.age,
                                 birthDate: json.birthDate,
                                 password: json.password,
-                                isAuthenticated: true
+                                isAuthenticated: true,
+                                id: json._id
                             }
                         }));
                     }
@@ -68,7 +70,7 @@ const useFormSubmit = () => {
             }
         }
 
-        const execLogin = async (form) => {
+        const execLogin = async (form, ac) => {
             try {
                 setSubmitting(true);
                 const res = await fetch(`${BASE_URL}/user/login`, {
@@ -91,13 +93,15 @@ const useFormSubmit = () => {
                         dispatch({ 
                             type: "SET_USER", 
                             payload: {
-                                email: json.email,
-                                firstName: json.firstName,
-                                lastName: json.lastName,
-                                age: json.age,
-                                birthDate: json.birthDate,
-                                password: json.password,
-                                isAuthenticated: true
+                                email: json.user.email,
+                                firstName: json.user.firstName,
+                                lastName: json.user.lastName,
+                                age: json.user.age,
+                                birthDate: json.user.birthDate,
+                                password: json.user.password,
+                                isAuthenticated: true,
+                                id: json.user._id,
+                                token: json.token
                             }
                         })
                     )
@@ -111,6 +115,6 @@ const useFormSubmit = () => {
             }
         }
 
-  return [submitting, response, handleCreate, handleLogin];
+    return [submitting, response, handleCreate, handleLogin];
 }
-export default useFormSubmit;
+export default useAuth;

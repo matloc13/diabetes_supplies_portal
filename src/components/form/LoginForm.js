@@ -78,86 +78,116 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
             {   // create account component
                 formType === "create" &&
                 <>
-                    <label htmlFor="firstName">
-                        First Name
-                        <input 
-                            id="firstName" 
-                            type="text"
-                            {...bindfName}/>
+                <fieldset className="field-label">
+                    <input 
+                        id="firstName" 
+                        type="text"
+                        name="firstName"
+                        {...bindfName}/>
+                    <label htmlFor="firstName" className="label-style">
+                       <span className="content-style">First Name</span> 
                     </label>
-
-                    <label htmlFor="lastName">
-                        Last Name
-                        <input 
-                            id="lastName" 
-                            type="text"
-                            {...bindlName}/>
+                </fieldset>
+                   
+                <fieldset className="field-label">
+                    <input 
+                        id="lastName" 
+                        type="text"
+                        name="lastName"
+                        {...bindlName}/>
+                    <label htmlFor="lastName" className="label-style">
+                        <span className="content-style">Last Name</span>
                     </label>
-
-                    <label htmlFor="email">
-                        Email
-                        <input 
-                            id="email"
-                            type="email"
-                            {...bindemail}/>
+                </fieldset>
+                   
+                <fieldset className="field-label">
+                    <input 
+                        id="email"
+                        name="email"
+                        type="email"
+                        {...bindemail}/>
+                    <label htmlFor="email" className="label-style">
+                        <span className="content-style">Email</span>    
                     </label>
-
-                    <label htmlFor="age">
-                        Age
+                </fieldset>
+                    
+                <fieldset className="field-label">
                     <input 
                         id="age" 
+                        name="age"
                         type="text"
                         {...bindage}/>
+                    <label htmlFor="age" className="label-style">
+                        <span className="content-style">Age</span>
                     </label>
 
-                    <label htmlFor="birthDate">
-                        Birth Date
-                        <input 
-                            id="birthDate" 
-                            type="date"
-                            {...bindbDate}/>
+                </fieldset>
+                 
+                <fieldset className="field-label">
+                    <input 
+                        id="birthDate" 
+                        name="birthDate"
+                        type="date"
+                        {...bindbDate}/>
+                    <label htmlFor="birthDate" className="label-style">
+                        <span className="content-style">Birth Date</span>                      
                     </label>
-
-                    <label htmlFor="password">
-                        {formType} password
-                        <input 
-                            id="firstName" 
-                            type="password"
-                            {...bindpassword}/>
+                </fieldset>
+                   
+                <fieldset className="field-label">
+                    <input 
+                        id="password" 
+                        name="password"
+                        type="password"
+                        {...bindpassword}/>
+                    <label htmlFor="password" className="label-style">
+                        <span className="content-style">{formType} password</span>
+                        
                     </label>
-
-                    <label htmlFor="submit">
-                        <input 
-                            type="submit" 
-                            value={formType }/>
-                    </label>
+                </fieldset>
+                    
+                <fieldset>
+                    <input 
+                        type="submit" 
+                        value={formType }/>
+                    <label htmlFor="submit"></label>
+                </fieldset>
+                   
                 </>
             }
 
            {    // login component
                formType === "login" &&
                <>
-                    <label htmlFor="email">
-                        {formType} email
+                    <fieldset className="field-label">
                         <input 
                             id="email" 
-                            type="text"
+                            type="email"
+                            name="email"
                             {...bindemail}/>
-                    </label>
+                        <label htmlFor="email" className="label-style">
+                            <span className="content-style">{formType} email</span>                    
+                        </label>
 
-                    <label htmlFor="password">
-                        {formType} password
+                    </fieldset>
+                  
+                    <fieldset className="field-label">
                         <input 
-                            id="firstName" 
+                            id="password"
+                            name="password" 
                             type="password"
                             {...bindpassword}/>
-                    </label>
-
-                    <label htmlFor="submit">
+                        <label htmlFor="password" className="label-style">
+                            <span className="content-style">{formType} password</span> 
+                        </label>
+                    </fieldset>
+                   <fieldset className="field-label">
                         <input 
                             type="submit" 
+                            name="submit"
                             value={formType }/>
-                    </label>
+                        <label htmlFor="submit"></label>
+                    </fieldset>
               </>
            }
          

@@ -35,21 +35,22 @@ const Gateway = () => {
       {
         formType === "login" &&
         <>
-            <LoginForm 
-                formType={"login"}/>
             <GatewayNav
                 handleClick={handleClick}
                 formType={formType}/>
+            <LoginForm 
+                formType={"login"}/>
         </>
       }
       {
         formType === "create"  &&
         <>
-            <LoginForm
-                formType={"create"}/>
             <GatewayNav
                 handleClick={handleClick}
-                formType={formType}/>
+                formType={formType}/>   
+            <LoginForm
+                formType={"create"}/>
+           
         </>
       }
     </main>

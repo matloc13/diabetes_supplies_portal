@@ -1,57 +1,119 @@
 form {
+    height: 100%;
     margin: 10% auto;
     width: 90%;
     display: flex;
     flex-flow: column;
     align-items: flex-start;
     box-sizing: border-box;
-    border: 1px solid fuchsia;
     justify-content: space-around;
-    padding: 2%;
+    padding: 4%;
+    background-color: lavenderblush;
+    box-shadow: 1px 0 10px lavender;
+    border-radius: 1%;
+
+
 }
 
-label {
+fieldset {
+    position: relative;
+    margin: 0 0 4%;
+    padding: 0;
     width: 100%;
-    align-items: baseline;
-    text-align: right;
-    // padding: 2%;
-    display: grid;
-    // grid-gap: 2%;
-    grid-template-columns: 1fr 3fr;
-
-}
-
-input {
-    grid-column: 2;
+    height: 50px;
     border: none;
-    margin: 0 0 .5%;
-    font-size: 1.4em;
-    cursor: pointer;
-    background-color: rgb(240, 240, 247);
 
-
-    &:focus {
-        border-bottom: 4px solid green;
-        padding: 2%;
-        outline: 1px solid green;
-        cursor: text;
+    input {
+        border: none;
+        width: 100%;
+        height: 100%;
+        font-size: 1.4em;
+        cursor: pointer;
+        // background-color: rgb(240, 240, 247);
         background-color: lavenderblush;
+        box-shadow: 0 1px 0 0 lavender;
+        outline: none;
+        padding-left: 4%;
+    }
+
+    input[type="submit"] {
+        font-weight: 900;
+        text-indent: initial;
+        text-align: center;
+        color: darken(lavender, 30%);
+        border-image: none;
+        border-width: 0;
+        box-shadow: none;
+        width: 100%;
+        background-color: transparent;
+
+
+
+        &:active {
+            background-color: lighten(lavenderblush, 2%);
+            color: blue;
+        }
+
+        &:focus {
+            outline: lavenderblush;
+        }
+
+    }
+
+    .label-style {
+        width: 100%;
+        height: 100%;
+        text-align: end;
+        position: absolute;
+        left: 0px;
+        bottom: -5px;
+        pointer-events: none;
+
+        &::after {
+
+            position: absolute;
+            left: 0px;
+            bottom: -1px;
+            height: 100%;
+            width: 100%;
+            border-bottom: 3px solid green;
+            transform: translateX(-100%);
+            transition: transform .3s ease;
+        }
+
+    }
+
+    .content-style {
+        position: absolute;
+        bottom: -11px;
+        left: 0px;
+        width: 100%;
+        transition: all .3s ease;
+        // color: lavender;
+        font-size: 14px;
+        color: green;
+        margin: 1%;
+        transform: translateY(-150%);
+        z-index: 1;
     }
 }
 
-input[type="submit"] {
-    font-weight: 900;
-    color: green;
-    border-image: none;
-    border-width: 0;
-    box-shadow: none;
 
-
-
-
-    &:active {
-        background-color: green;
-        color: blue;
+.field-label {
+    input:focus+.label-style .content-style {
+        transform: translateY(50%);
+        font-size: 14px;
+        color: green;
+        // background-color: lighten(lavenderblush, 2%);
+        // text-align: end;
     }
 
+    input:focus {
+        background-color: lighten(lavenderblush, 2%);
+    }
+}
+
+.field-label input:focus+.label-style::after,
+.field-label input:valid+.label-style::after {
+    transform: translateY(0%);
 }

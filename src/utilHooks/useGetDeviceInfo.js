@@ -1,36 +1,46 @@
-import { useEffect, useState } from 'react';
-import BASE_URL from './../constants'
+import { useEffect, useState, useContext } from 'react';
+import BASE_URL from './../constants';
+import UserContext from './../contexts/userContext';
 
-const useGetDeviceInfo =  (load) => {
+const useGetDeviceInfo = (load) => {
+    const { user, device, allDevs, dispatch } = useContext(UserContext);
+    const [dev, setDev] = useState([]);
 
-    const [devices, setDevices] = useState([])
-    
     useEffect(() => {
         if (load.type === "getting") {
             console.log('getting');
-            
-            getAll();
+            const promise1 = async (user_id, token) => { 
+                try {
+                    const res = await fetch(`${BASE_URL}/device/${user_id}`, {
+                        method: "GET",
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'authorization': token
+                         }});
+                    const json = await res.json();
+
+                   await new Promise((resolve) => {
+                        if (json.length > 0) {
+                            console.log(json);
+                            
+                            return resolve(
+                               dispatch({type: "SET_DEVICE_ARR", payload: json})
+                            )
+                        }
+                       
+                   })
+
+                } catch (error) {
+                    console.error(error);
+                } 
+        }
+            promise1(load.user_id, load.token);
         }
         return () => {};
     }, [load])
 
-    const promise1 = async () => { 
-        const res = await fetch(`${BASE_URL}/device/${load.user_id}`, {
-        signal: load.signal,
-        method: "GET",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'authorization': load.token
-         }});
-         const json = await res.json();
-         await new Promise((resolve) => {
-             return resolve(
-                 setDevices([...devices, {json}])
-             )
-         })
-
-};
+  
     // const promise2 = async () => { 
     //     try {
     //         const res = await fetch(`${BASE_URL}/user/device/${device_id}/aquire`, {
@@ -65,12 +75,11 @@ const useGetDeviceInfo =  (load) => {
     //     })
     // }
 
-    const getAll = () => {
-        return promise1();
-    }
+    // const getAll = () => {
+    //     return promise1(load.user_id, load.token);
+    // }
 
-   
-        return { devices };
+   return { allDevs };
 }
 
 export default useGetDeviceInfo;

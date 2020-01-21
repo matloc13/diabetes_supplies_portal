@@ -1,22 +1,25 @@
-import React from 'react';
-const DeviceArray = ({devices}) => {
+import React, {useContext} from 'react';
+import UserContext from './../../contexts/userContext';
+
+const DeviceArray = () => {
+    const {user, device, allDevs} = useContext(UserContext);
     return (
         <section>
             
             <ul>
                 {
-                devices && 
-                    devices.map((ele, index) => {
+                allDevs && 
+                    allDevs.map((ele, index) => {
                         return (
                             <li key={index}>
-                                {ele.brand}
+                                Name:{ele.deviceName} Brand: {ele.brand} Model: {ele.model}
                             </li>
                         )
                     })
                 }
             </ul>
             {
-                !devices && 
+                !allDevs && 
                 <h4>User has no devices</h4>
             }
             

@@ -20,8 +20,11 @@ const DeviceForm = () => {
 
 	const bundleSubmit = () => {
 		setSubmitForm(formInfo);
-		setUrl(`${BASE_URL}/device/${user.id}/create`)
+		if (user.id) {
+			setUrl(`${BASE_URL}/device/${user.id}/create`);
 	}
+		}
+		
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -51,7 +54,9 @@ const DeviceForm = () => {
 	}, [device, brand, model, serialNumber, userSpec, user])
 
 	useEffect(() => {
-		if (data) {
+		if (data.user_id) {
+			console.log(data);
+			
 			dispatch({type: "CREATE_DEVICE", payload: data})
 		}
 		return () => {};

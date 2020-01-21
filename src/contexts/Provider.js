@@ -1,8 +1,9 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import App from './../App';
 import UserContext from './userContext';
 import userReducer from '../reducers/userReducer';
 import deviceReducer from './../reducers/deviceReducer';
+import allDevsReducer from './../reducers/allDevsReducer';
 
     const initUser = {
         firstName: " ",
@@ -27,15 +28,29 @@ import deviceReducer from './../reducers/deviceReducer';
         deviceFailure: []
     }
 
+    
+
 const Provider = () => {
     
     const [user, dispatchUser] = useReducer(userReducer, initUser);
     const [device, dispatchDevice] = useReducer(deviceReducer, initDevice);
+    const [allDevs, dispatchDevArray] = useReducer(allDevsReducer, []);
     const dispatch = (action) => {
-        [dispatchUser, dispatchDevice].forEach((fn) => {
+        [dispatchUser, dispatchDevice, dispatchDevArray].forEach((fn) => {
             fn(action);
         })
     }
+        device && console.log(device);
+        user && console.log(user);
+        allDevs && console.log(allDevs);
+        
+        useEffect(() => {
+            if (device) {
+                dispatch({ type: "ADD_DEVICE_TO_ARR", payload: device })
+            }
+            return () => {};
+        }, [device])
+    
 
     if (!user) {
         return (
@@ -45,7 +60,7 @@ const Provider = () => {
         )
     } else {
         return (
-            <UserContext.Provider value={{user, device, dispatch}}>
+            <UserContext.Provider value={{user, device, allDevs, dispatch}}>
                 <App />
             </UserContext.Provider>
         )

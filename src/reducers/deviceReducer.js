@@ -1,10 +1,19 @@
+
 const deviceReducer = (state, action) => {
-    console.log(state);
-    console.log(action);
-  
+
+
     switch (action.type) {
         case "CREATE_DEVICE":
-            return;
+            return { 
+                ...state,
+                id: action.payload.id,
+                user_id: action.payload.user_id,
+                deviceName: action.payload.deviceName,
+                brand: action.payload.brand,
+                model: action.payload.model,
+                serialNumber: action.payload.serialNumber,
+                userSpec: action.payload.userSpec,
+             };
         case "ADD_NEW_CHANGE":
             return;
         case "ADD_NEW_FAILURE":

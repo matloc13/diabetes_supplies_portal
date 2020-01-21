@@ -8,14 +8,14 @@ const useAddDevice = () => {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        const ac = new AbortController();
-        const signal = ac.signal;
+        // const ac = new AbortController();
+        // const signal = ac.signal;
         const handleAdd = async () => {
             console.log(submitForm);
             
             setSubmitting("inaction");
             try {
-                const res = await fetch(`${url}/${submitForm.user_id}`, {
+                const res = await fetch(`${url}`, {
 
                     method: "POST",
                     body: JSON.stringify({
@@ -31,9 +31,7 @@ const useAddDevice = () => {
                         'Content-Type': 'application/json',
                         'authorization': `${submitForm.token}`,
                     },
-                    credentials: 'same-origin',
-                    signal
-
+                    credentials: 'same-origin'
                 });
     
                 const json = await res.json();
@@ -42,10 +40,9 @@ const useAddDevice = () => {
                     
                     setSubmitting("finished")
                     return resolve(
-                        setData(json)
+                        setData({...data, json})
                     )
                 })
-                
             } catch (error) {
                 console.error(error);               
             }
@@ -56,7 +53,7 @@ const useAddDevice = () => {
         }
         handleAdd();
         return () => {
-            ac.abort();
+            // ac.abort();
         };
     }, [url])
 

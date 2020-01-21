@@ -8,7 +8,9 @@ const userReducer = (state, action) => {
                 age: action.payload.age,
                 birthdate: action.payload.birthDate,
                 password: action.payload.password,
-                isAuthenticated: action.payload.isAuthenticated
+                isAuthenticated: action.payload.isAuthenticated,
+                id: action.payload.id,
+                token: action.payload.token
             };
         case "LOGOUT_USER":
             window.localStorage.clear();

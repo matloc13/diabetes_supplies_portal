@@ -11,7 +11,8 @@ import deviceReducer from './../reducers/deviceReducer';
         birthDate: Date.now(),
         password: " ",
         isAuthenticated: false,
-        id: " "
+        id: " ",
+        token: ""
     }
 
     const initDevice = {
@@ -27,6 +28,7 @@ import deviceReducer from './../reducers/deviceReducer';
     }
 
 const Provider = () => {
+    
     const [user, dispatchUser] = useReducer(userReducer, initUser);
     const [device, dispatchDevice] = useReducer(deviceReducer, initDevice);
     const dispatch = (action) => {
@@ -34,10 +36,20 @@ const Provider = () => {
             fn(action);
         })
     }
-    return (
-        <UserContext.Provider value={{user, device, dispatch}}>
-            <App />
-        </UserContext.Provider>
-    )
+
+    if (!user) {
+        return (
+             <>
+                <App />
+             </>
+        )
+    } else {
+        return (
+            <UserContext.Provider value={{user, device, dispatch}}>
+                <App />
+            </UserContext.Provider>
+        )
+    }
+ 
 }
 export default Provider;

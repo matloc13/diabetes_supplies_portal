@@ -1,9 +1,25 @@
 import React from 'react';
-const DeviceArray = () => {
+const DeviceArray = ({devices}) => {
     return (
         <section>
-            {/* array of devices */}
-            <h3>array of devices </h3>
+            
+            <ul>
+                {
+                devices && 
+                    devices.map((ele, index) => {
+                        return (
+                            <li key={index}>
+                                {ele.brand}
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+            {
+                !devices && 
+                <h4>User has no devices</h4>
+            }
+            
         </section>
 
     )

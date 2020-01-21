@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import useInput from '../../utilHooks/useInput';
 import useAuth from '../../utilHooks/useAuth';
 import './_form.scss';
 
 const LoginForm = ({formType}) => {
-    
+    let signal;
+const signalRef = useRef(signal);
 const { value:fName, bind:bindfName, reset:resetfName } = useInput('');
 const { value:lName, bind:bindlName, reset:resetlName } = useInput('');
 const { value:age, bind:bindage, reset:resetage } = useInput('');
@@ -12,10 +13,10 @@ const { value:bDate, bind:bindbDate, reset:resetbDate } = useInput('');
 const { value:password, bind:bindpassword, reset:resetpassword } = useInput('');
 const { value:email, bind:bindemail, reset:resetemail } = useInput('');
   
-    const [submitting, response, handleCreate, handleLogin] = useAuth();
+    const [ submitting, response, handleCreate, handleLogin, getting ] = useAuth();
     const [formInfo, setformInfo] = useState(null);
-    // const [isMounted, setIsMounted] = useState(false)
     
+   
     const handleSubmit = (e) => {
         e.preventDefault();
         switch (formType) {
@@ -64,7 +65,21 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
       return () => {
 
       };
-  }, [ email, fName, lName, age, bDate, password, formType, response ]);//eslint-disable-line
+  }, [ email, fName, lName, age, bDate, password, formType ]);//eslint-disable-line
+
+  useEffect(() => {
+    
+  const ac = new AbortController();
+   signalRef.current = ac.signal;
+ 
+      return () => {
+         if (getting === "finished") {
+             console.log('aborted fetch');
+             
+             return ac.abort();
+         }
+      };
+  }, [ getting ])    
 
 //   console.log(formType); 
   return (
@@ -141,7 +156,8 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                         type="password"
                         {...bindpassword}/>
                     <label htmlFor="password" className="label-style">
-                        <span className="content-style">{formType} password</span>
+                        <span className="content-style">{formType} password
+                        </span>
                         
                     </label>
                 </fieldset>
@@ -149,7 +165,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                 <fieldset>
                     <input 
                         type="submit" 
-                        value={formType }/>
+                        value={ formType }/>
                     <label htmlFor="submit"></label>
                 </fieldset>
                    

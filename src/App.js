@@ -24,12 +24,11 @@ const App = () => {
                             <UserProfile path="userProfile"/>
                             <AddDevice path="/addDevice" />
                             <EditUser path="/editUser" />
-
-                            <DeviceProfile path="deviceProfile"/>
-                            
+                            <DeviceProfile path="deviceProfile"/>    
                     </Router>
 
                     :
+                    
                     <Router>
                         <Gateway path="/"/>  
                     </Router>

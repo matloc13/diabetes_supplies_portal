@@ -5,12 +5,11 @@ import UserContext from '../contexts/userContext';
 const useAuth = () => {
     const [ submitting, setSubmitting ] = useState(false);
     const [ response, setResponse ] = useState({});
+    const [getting, setGetting] = useState("waiting");
     const { dispatch } = useContext(UserContext);
-
+  
     const handleCreate = (e, form) => {
         e.persist();
-        // console.dir(e)
-        // console.log(form);
         execCreate(form)
     }
 
@@ -19,8 +18,11 @@ const useAuth = () => {
         execLogin(form)
     }
 
-        const execCreate = async (form, ac) => {
-            // console.log(form);
+    const handleGetUser = () => {
+        execGetuser();
+    }
+
+        const execCreate = async (form) => {
             try {
                 setSubmitting(true);
                 const res = await fetch(`${BASE_URL}/user/create`, {
@@ -36,8 +38,8 @@ const useAuth = () => {
                     headers: {
                         'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
-                    }
-                    
+                    },
+                    credentials: 'include'
                 });
             
                 const json = await res.json();
@@ -45,7 +47,8 @@ const useAuth = () => {
                     console.log(json);
                     
                     if (json) {
-                        setResponse(json)
+                        setResponse(json);
+                        setGetting("getting");
                         return resolve(dispatch({
                             type: "SET_USER",
                             payload: {
@@ -70,7 +73,8 @@ const useAuth = () => {
             }
         }
 
-        const execLogin = async (form, ac) => {
+        const execLogin = async (form) => {
+
             try {
                 setSubmitting(true);
                 const res = await fetch(`${BASE_URL}/user/login`, {
@@ -80,15 +84,17 @@ const useAuth = () => {
                         password: form.password
                     }),
                     headers: {
-                        'Accept': 'application/json, text/html',
+                        'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
-                    }
+                    },
+                    credentials: 'same-origin'
                 });
                 const json = await res.json();
                 await new Promise((resolve) => {
-                    setResponse(json)
+                    setResponse(json);
+                    setGetting("getting");
                     console.log(json);
-                    
+                    setGetting("finished")
                     return resolve(
                         dispatch({ 
                             type: "SET_USER", 
@@ -111,10 +117,35 @@ const useAuth = () => {
             } finally {
                 if (response) {
                     setSubmitting(false);
+
                 }
             }
         }
 
-    return [submitting, response, handleCreate, handleLogin];
+        const execGetuser = async () => {
+            try {
+                const res = await fetch(`${BASE_URL}/`, {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    credentials: 'same-origin',
+
+                });
+                const json = await res.json();
+                await new Promise((resolve) => {
+                    if (json) {
+                        return resolve(console.log('cookie set'))   
+                    }
+                })
+            } catch (error) {
+                console.error(error);
+                
+            }
+           
+        }
+
+    return [submitting, response, handleCreate, handleLogin, getting, handleGetUser];
 }
 export default useAuth;

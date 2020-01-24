@@ -1,10 +1,9 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import BASE_URL from './../constants';
 import UserContext from './../contexts/userContext';
 
 const useGetDeviceInfo = (load) => {
     const { user, device, allDevs, dispatch } = useContext(UserContext);
-    const [dev, setDev] = useState([]);
 
     useEffect(() => {
         if (load.type === "getting") {

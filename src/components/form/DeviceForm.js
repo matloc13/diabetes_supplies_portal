@@ -25,7 +25,6 @@ const DeviceForm = () => {
 	}
 		}
 		
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		resetDevice();

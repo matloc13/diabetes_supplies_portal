@@ -3,10 +3,11 @@ import { Router } from '@reach/router';
 import UserContext from './contexts/userContext';
 import Gateway from './pages/Gateway';
 import Dashboard from './pages/Dashboard';
-import DeviceProfile from './components/device/DeviceProfile';
+import DeviceProfile from './pages/DeviceProfile';
 import UserProfile from './components/user/UserProfile';
 import AddDevice from './pages/AddDevice';
 import EditUser from './pages/EditUser';
+import {DeviceFailures, DeviceChanges, DeviceAquired} from './components/device/index';
 
 import './App.scss';
 
@@ -22,9 +23,13 @@ const App = () => {
                     <Router>
                         <Dashboard path="/"/>
                             <UserProfile path="userProfile"/>
-                            <AddDevice path="/addDevice" />
-                            <EditUser path="/editUser" />
-                            <DeviceProfile path="deviceProfile"/>    
+                            <AddDevice path="addDevice" />
+                            <EditUser path="editUser" />
+                            <DeviceProfile path="deviceProfile">  
+                                <DeviceChanges path="dChange" />
+                                <DeviceAquired  path="dAquire" />
+                                <DeviceFailures path="dFailure" />  
+                            </DeviceProfile>
                     </Router>
 
                     :

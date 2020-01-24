@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import DeviceArray from './../components/device/DeviceArray';
 import UserNav from './../components/nav/UserNav';
-import NavLink from './../components/nav/NavLink';
 import useGetDeviceInfo from './../utilHooks/useGetDeviceInfo';
 import UserContext from './../contexts/userContext';
 const Dashboard = () => {
-    const {user, dispatch, device} = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const [load, setLoad] = useState({
         type: "not",
         user_id: ' ',
@@ -32,10 +31,7 @@ const Dashboard = () => {
     
     return (
         <main>
-            <nav>
-                <NavLink to="userProfile">profile</NavLink>
-                <NavLink to ="deviceProfile">device</NavLink>
-            </nav>
+
             <UserNav />
             <DeviceArray 
                 deviceArray={devices}

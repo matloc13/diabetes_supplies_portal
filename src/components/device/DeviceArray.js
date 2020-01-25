@@ -3,7 +3,7 @@ import NavLink from './../nav/NavLink';
 import UserContext from './../../contexts/userContext';
 
 const DeviceArray = () => {
-    const {user, device, allDevs} = useContext(UserContext);
+    const { allDevs } = useContext(UserContext);
 
     return (
         <section>
@@ -12,10 +12,15 @@ const DeviceArray = () => {
                 {
                 allDevs && 
                     allDevs.map((ele, index) => {
+                        // console.log(ele);
+                        
                         return (
                             <li key={index}>
                                 Name:{ele.deviceName} Brand: {ele.brand} Model: {ele.model}
-                                <NavLink to="deviceProfile">view</NavLink>
+                                <NavLink 
+                                    to={`deviceProfile/${ele._id}`}>        
+                                        view
+                                </NavLink>
                             </li>
                         )
                     })

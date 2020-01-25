@@ -15,11 +15,41 @@ const deviceReducer = (state, action) => {
                 userSpec: action.payload.userSpec,
              };
         case "ADD_NEW_CHANGE":
-            return;
+            return [ 
+                ...state.deviceChanges, 
+                    {
+                        _id: action.payload.id,
+                        user_id: action.payload.user_id,
+                        device_id: action.payload.device_id,
+                        date: action.payload.date,
+                        item: action.payload.item,
+                        note: action.payload.note
+                    }
+            ];
         case "ADD_NEW_FAILURE":
-            return;
+            return [ 
+                ...state.deviceFailure, 
+                    {
+                        _id: action.payload.id,
+                        user_id: action.payload.user_id,
+                        device_id: action.payload.device_id,
+                        date: action.payload.date,
+                        item: action.payload.item,
+                        note: action.payload.note
+                    }
+            ];
         case "ADD_NEW_AQUIRED":
-            return;
+            return [ 
+                ...state.deviceAquired, 
+                    {
+                        _id: action.payload.id,
+                        user_id: action.payload.user_id,
+                        device_id: action.payload.device_id,
+                        date: action.payload.date,
+                        item: action.payload.item,
+                        note: action.payload.note
+                    }
+            ];
         default:
             return state;
     }

@@ -50,7 +50,7 @@ const DeviceForm = () => {
 			})
 		}
 		return () => {};
-	}, [device, brand, model, serialNumber, userSpec, user])
+	}, [device, brand, model, serialNumber, userSpec, user])//eslint-disable-line
 
 	useEffect(() => {
 		if (data.user_id) {
@@ -59,7 +59,7 @@ const DeviceForm = () => {
 			dispatch({type: "CREATE_DEVICE", payload: data})
 		}
 		return () => {};
-	}, [ data ])
+	}, [ data ])//eslint-disable-line
 
 
 	return (

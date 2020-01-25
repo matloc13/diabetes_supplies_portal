@@ -3,7 +3,7 @@ import BASE_URL from './../constants';
 import UserContext from './../contexts/userContext';
 
 const useGetDeviceInfo = (load) => {
-    const { user, device, allDevs, dispatch } = useContext(UserContext);
+    const { allDevs, dispatch } = useContext(UserContext);
 
     useEffect(() => {
         if (load.type === "getting") {

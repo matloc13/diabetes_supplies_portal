@@ -28,8 +28,6 @@ import allDevsReducer from './../reducers/allDevsReducer';
         deviceFailure: []
     }
 
-    
-
 const Provider = () => {
     
     const [user, dispatchUser] = useReducer(userReducer, initUser);
@@ -40,9 +38,9 @@ const Provider = () => {
             fn(action);
         })
     }
-        device && console.log(device);
-        user && console.log(user);
-        allDevs && console.log(allDevs);
+        // device && console.log(device);
+        // user && console.log(user);
+        // allDevs && console.log(allDevs);
         
         useEffect(() => {
             if (device) {

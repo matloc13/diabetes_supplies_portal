@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import LoginForm from '../components/form/LoginForm';
 import GatewayNav from './../components/nav/gatewayNav';
 // import useAuth from './../utilHooks/useAuth';

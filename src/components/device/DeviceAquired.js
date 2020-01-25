@@ -1,11 +1,13 @@
 import React from 'react';
 import NewItem from './../newItem/NewItem';
-const DeviceAquired = () => {
+const DeviceAquired = ({deviceId}) => {
     return (
         <article>
             <h2>device arrivals</h2>
             <NewItem
-                itemType="device aquired" />
+                itemType="device aquired"
+                deviceId={deviceId}
+             />
             <ul>
                 <li></li>
             </ul>

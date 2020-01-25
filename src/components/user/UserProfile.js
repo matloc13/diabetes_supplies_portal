@@ -3,7 +3,7 @@ import UserContext from './../../contexts/userContext';
 import UserNav from './../nav/UserNav';
 
 const UserProfile = () => {
-  const { user } = useContext(UserContext);
+  const { user, allDevs } = useContext(UserContext);
   console.log(user);
   
   return (
@@ -20,7 +20,13 @@ const UserProfile = () => {
             </ul>
         </aside>
         <aside>
-          <h1>lists of users devices</h1>
+            {
+                allDevs.map((ele, i) => {
+                return (
+                    <h3 key={i}>{ele.brand}</h3>
+                    )
+                })
+            }
         </aside>
 
 

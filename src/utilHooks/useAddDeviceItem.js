@@ -1,67 +1,57 @@
-import { useContext } from 'react';
+import { useState, useEffect } from 'react';
 import BASE_URL from './../constants';
-import UserContext from './../contexts/userContext';
+
 
 const useAddDeviceItem = () => {
+    const [data, setData] = useState({});
+    const [submitting, setSubmitting] = useState(false);
+    const [form, setForm] = useState({});
+    const [url, setUrl] = useState('');
 
-    const { user, device, dispatch } = useContext(UserContext);
-
-    const addItem = (form, action) => {
-        switch (action) {
-            case "change":
-                return execChange(form);
-            case "aquire":
-                return execAquire(form);
-            case "failure":
-                return execFailure(form);
-            default:
-                return;
-        }
-    }
-
-
-    const execChange = async (form) => {
-        try {
-            const res = await fetch(`${BASE_URL}/device/change`, {
-                method: "POST",
-                body: JSON.stringify(form),
-                headers: {
-                    'Accept': 'application/json, text/html',
-                    'Content-Type': 'application/json'
-                }
-            });
-    
-            const json = await res.json();
-            await new Promise((resolve) => {
-                return resolve(
-                    dispatch({
-                        type: "CREATE_DEVICE", 
-                        payload: {
-                            json
-                    }})
-                )
-            })
-            
-        } catch (error) {
-            console.error(error);  
-        }
-       
-    }
-
-    const execAquire = () => {
-
-    }
-
-    const execFailure = () => {
+    useEffect(() => {
+        console.log(form);
         
-    }
+        if (form.device_id) {
+            const execItemOp = async () => {
+                setSubmitting(true);
+            try {
+                console.log('posting change');
+                
+                const res = await fetch(`${BASE_URL}/device/${url}`, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        user_id: form.user_id,
+                        device_id: form.device_id,
+                        date: form.date,
+                        item: form.item,
+                        note: form.note
+                    }),
+                    headers: {
+                        'Accept': 'application/json, text/html',
+                        'Content-Type': 'application/json',
+                        'authorization': form.token
+                    },
+                    credentials: 'same-origin'
+                });
+        
+                const json = await res.json();
+                await new Promise((resolve) => {
+                    console.log(json);
+                    return resolve(setData({...data, json}))
+                })
+            } catch (error) {
+                console.error(error);  
+            } finally {
+                setSubmitting(false);
+            }
+        }
+        execItemOp();
+        }
+   
+        return () => {};
+    }, [url]) //eslint-disable-line
 
-
-
-
-
-
-  return { addItem }
+  return [ { data, submitting }, setForm, setUrl ]
 }
 
 export default useAddDeviceItem;

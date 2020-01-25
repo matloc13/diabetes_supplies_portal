@@ -55,7 +55,7 @@ const useAddDevice = () => {
         return () => {
             // ac.abort();
         };
-    }, [url])
+    }, [url])//eslint-disable-line
 
 
 

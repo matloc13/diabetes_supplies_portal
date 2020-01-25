@@ -13,7 +13,7 @@ import './App.scss';
 
 const App = () => {
     const {user} = useContext(UserContext);
-    console.log(user);
+    // console.log(user);
     
     return (
         <div className="App">
@@ -25,7 +25,7 @@ const App = () => {
                             <UserProfile path="userProfile"/>
                             <AddDevice path="addDevice" />
                             <EditUser path="editUser" />
-                            <DeviceProfile path="deviceProfile">  
+                            <DeviceProfile path="deviceProfile/:deviceId">  
                                 <DeviceChanges path="dChange" />
                                 <DeviceAquired  path="dAquire" />
                                 <DeviceFailures path="dFailure" />  

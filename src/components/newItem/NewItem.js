@@ -1,22 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ItemForm from './../form/ItemForm';
+const NewItem = ({itemType, deviceId}) => {
 
-const NewItem = ({itemType}) => {
-
- 
-    console.log(itemType);
-    
-    const handleClick = (e) => {
-        switch (e.target.class) {
-            case "change":
-                return;
-            case "aquire":
-                return;
-            case "failure":
-                return;
-            default:
-                return;
-        }
-      
+    const [formReveal, setFormReveal] = useState(false)
+    console.log({itemType, deviceId});
+     
+    const handleClick = () => {
+        return setFormReveal(true)
     }
     return (
         <article className="btn-container">
@@ -28,6 +18,15 @@ const NewItem = ({itemType}) => {
                     {`add new ${itemType}`}
                 </button>
             </label>
+
+            {
+                formReveal  &&
+                    <ItemForm
+                        formType={itemType}
+                        reveal={setFormReveal}
+                        deviceId={deviceId}
+                    />
+            }
         </article>
   )
 }

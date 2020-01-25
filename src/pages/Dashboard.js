@@ -33,9 +33,7 @@ const Dashboard = () => {
         <main>
 
             <UserNav />
-            <DeviceArray 
-                deviceArray={devices}
-            />
+            <DeviceArray />
            
         </main>
     )

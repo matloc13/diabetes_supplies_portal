@@ -5,8 +5,9 @@ const userReducer = (state, action) => {
                 email: action.payload.email,
                 firstName: action.payload.firstName,
                 lastName: action.payload.lastName,
+                userName: action.payload.userName,
                 age: action.payload.age,
-                birthdate: action.payload.birthDate,
+                birthDate: action.payload.birthDate,
                 password: action.payload.password,
                 isAuthenticated: action.payload.isAuthenticated,
                 id: action.payload.id,
@@ -15,6 +16,15 @@ const userReducer = (state, action) => {
         case "LOGOUT_USER":
             window.localStorage.clear();
             return {...state};
+        case "UPDATE_USER":
+            return {
+                ...state,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
+                userName: action.payload.userName,
+                age: action.payload.age,
+                birthDate: action.payload.birthDate,
+            }
         default:
             return state;
 

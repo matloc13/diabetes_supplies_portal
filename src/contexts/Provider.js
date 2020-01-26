@@ -8,8 +8,9 @@ import allDevsReducer from './../reducers/allDevsReducer';
     const initUser = {
         firstName: " ",
         lastName: " ",
+        userName: " ",
         age: 0,
-        birthDate: Date.now(),
+        birthDate: Date,
         password: " ",
         isAuthenticated: false,
         id: " ",

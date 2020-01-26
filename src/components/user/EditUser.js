@@ -1,9 +1,11 @@
 import React from 'react';
 import EditUserForm from './../form/EditUserForm';
+import UserNav from './../nav/UserNav';
+
 const EditUser = () => {
     return (
         <main>
-            <h3>edit user</h3>
+            <UserNav />
             <EditUserForm />
         </main>
     )

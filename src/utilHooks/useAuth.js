@@ -18,8 +18,8 @@ const useAuth = () => {
         execLogin(form)
     }
 
-    const handleGetUser = () => {
-        execGetuser();
+    const handleUpdateUser = () => {
+        execUpdateuser();
     }
 
         const execCreate = async (form) => {
@@ -122,30 +122,38 @@ const useAuth = () => {
             }
         }
 
-        const execGetuser = async () => {
+        const execUpdateuser = async (form) => {
             try {
-                const res = await fetch(`${BASE_URL}/`, {
-                    method: "GET",
+                const res = await fetch(`${BASE_URL}/user/${form.user_id}/update`, {
+                    method: "PUT",
+                    body: JSON.stringify(),
                     headers: {
-                        'Content-Type': 'application/json',
                         'Accept': 'application/json',
-                    },
-                    credentials: 'same-origin',
-
+                        'Content-Type': 'application/json',
+                        'authorization': form.token
+                    }
                 });
                 const json = await res.json();
                 await new Promise((resolve) => {
-                    if (json) {
-                        return resolve(console.log('cookie set'))   
-                    }
+                    return resolve(
+                        dispatch({
+                            type: "UPDATE_USER",
+                            payload: {
+                                firstName: json.firstName,
+                                lastName: json.lastName,
+                                userName: json.userName,
+                                age: json.age,
+                                birthDate: json.birthDate
+                            }
+                        })
+                    )
                 })
             } catch (error) {
                 console.error(error);
                 
             }
-           
         }
 
-    return [submitting, response, handleCreate, handleLogin, getting, handleGetUser];
+    return [submitting, response, handleCreate, handleLogin, getting,  handleUpdateUser];
 }
 export default useAuth;

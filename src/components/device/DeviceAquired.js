@@ -1,6 +1,6 @@
 import React from 'react';
 import NewItem from './../newItem/NewItem';
-const DeviceAquired = ({deviceId}) => {
+const DeviceAquired = ({deviceId, aquired}) => {
     return (
         <article>
             <h2>device arrivals</h2>
@@ -9,7 +9,17 @@ const DeviceAquired = ({deviceId}) => {
                 deviceId={deviceId}
              />
             <ul>
-                <li></li>
+                {
+                    aquired.map((ele, i) => {
+                        return (
+                            <li key={i}>
+                                <h3>{ele.item}</h3>
+                                <span>{ele.date}</span>
+                                <p>{ele.note}</p>
+                            </li>
+                        )
+                    })
+                }
             </ul>
         </article>
     )

@@ -2,7 +2,7 @@ import React from 'react';
 import NewItem from './../newItem/NewItem';
 
 
-const DeviceChanges = ({deviceId}) => {
+const DeviceChanges = ({deviceId, changes}) => {
 
     return (
             <article>
@@ -12,7 +12,17 @@ const DeviceChanges = ({deviceId}) => {
                     deviceId={deviceId}
                     />               
                 <ul>
-                    <li></li>
+                  {
+                      changes.map((ele, i) => {
+                          return (
+                                <li key={i}>
+                                    <h3>{ele.item}</h3>
+                                    <span>{ele.date}</span>
+                                    <p>{ele.note}</p>
+                                </li>
+                          )
+                      })
+                  }
                 </ul>
             </article>
     )

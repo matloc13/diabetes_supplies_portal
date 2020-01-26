@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import UserContext from './../../contexts/userContext';
-import UserNav from './../nav/UserNav';
+import UserContext from '../contexts/userContext';
+import UserNav from '../components/nav/UserNav';
 
 const UserProfile = () => {
   const { user, allDevs } = useContext(UserContext);

@@ -4,9 +4,9 @@ import UserContext from './contexts/userContext';
 import Gateway from './pages/Gateway';
 import Dashboard from './pages/Dashboard';
 import DeviceProfile from './pages/DeviceProfile';
-import UserProfile from './components/user/UserProfile';
+import UserProfile from './pages/UserProfile';
 import AddDevice from './pages/AddDevice';
-import EditUser from './pages/EditUser';
+import EditUser from './components/user/EditUser';
 import {DeviceFailures, DeviceChanges, DeviceAquired} from './components/device/index';
 
 import './App.scss';

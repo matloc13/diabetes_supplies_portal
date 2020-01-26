@@ -8,6 +8,7 @@ const LoginForm = ({formType}) => {
 const signalRef = useRef(signal);
 const { value:fName, bind:bindfName, reset:resetfName } = useInput('');
 const { value:lName, bind:bindlName, reset:resetlName } = useInput('');
+const { value:uName, bind:binduName, reset:resetuName } = useInput('');
 const { value:age, bind:bindage, reset:resetage } = useInput('');
 const { value:bDate, bind:bindbDate, reset:resetbDate } = useInput('');
 const { value:password, bind:bindpassword, reset:resetpassword } = useInput('');
@@ -28,6 +29,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                 resetbDate();
                 resetpassword();
                 resetemail();
+                resetuName();
                 return handleCreate(e, formInfo);
             case "login":
                 resetfName();
@@ -36,6 +38,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                 resetbDate();
                 resetpassword();
                 resetemail();
+                resetuName();
                 return handleLogin(e, formInfo);
             default:
                 throw new Error('did not submit');
@@ -49,6 +52,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                     email,
                     fName,
                     lName,
+                    uName,
                     age,
                     bDate,
                     password
@@ -112,6 +116,17 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                         {...bindlName}/>
                     <label htmlFor="lastName" className="label-style">
                         <span className="content-style">Last Name</span>
+                    </label>
+                </fieldset>
+
+                <fieldset>
+                    <input 
+                        id={"userName"}
+                        type="text"
+                        name="userName"
+                        {...binduName}/>
+                    <label htmlFor="userName" className="label-style">
+                        <span className="content-style">Username</span>
                     </label>
                 </fieldset>
                    

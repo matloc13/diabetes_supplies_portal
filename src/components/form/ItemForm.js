@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import useAddDeviceItem from './../../utilHooks/useAddDeviceItem';
 import useInput from './../../utilHooks/useInput';
 import UserContext from './../../contexts/userContext';
 
 const ItemForm = ({ formType, reveal, deviceId }) => {
-    const {user, dispatch} = useContext(UserContext);
+    const {user } = useContext(UserContext);
     const [ {data, submitting }, setForm, setUrl ] = useAddDeviceItem();
     const {value:date, bind:bindDate, reset:resetDate } = useInput(" ");
     const {value:item, bind:bindItem, reset:resetItem } = useInput(" ");
@@ -17,8 +17,6 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
         item: " ",
         note: " "
     })
-
-    const curType = useRef(null);
 
     const bundleSubmit = () => {
         setForm(formInfo);
@@ -68,45 +66,7 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
     useEffect(() => {
         if (data.device_id) {
             reveal(false);
-            switch (formType) {
-                case "device change":
-                    return dispatch({
-                        type: "ADD_NEW_CHANGE",
-                        payload: {
-                            user_id: data.json.user_id,
-                            device_id: data.json.device_id,
-                            date: data.json.date,
-                            item: data.json.item,
-                            note: data.json.note
-                        }
-                     })
-            
-                case "device aquired":
-                    return  dispatch({
-                        type: "ADD_NEW_AQUIRED",
-                        payload: {
-                            user_id: data.json.user_id,
-                            device_id: data.json.device_id,
-                            date: data.json.date,
-                            item: data.json.item,
-                            note: data.json.note
-                        }
-                     })
-                case "device failure":
-                    return   dispatch({
-                        type: "ADD_NEW_FAILURE",
-                        payload: {
-                            user_id: data.json.user_id,
-                            device_id: data.json.device_id,
-                            date: data.json.date,
-                            item: data.json.item,
-                            note: data.json.note
-                        }
-                     })
-                default:
-                    return;
-            }
-        }         
+        }
         return () => { 
         };
     }, [data])//eslint-disable-line

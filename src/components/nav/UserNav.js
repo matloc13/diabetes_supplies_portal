@@ -6,7 +6,6 @@ const UserNav = () => {
 
                 <NavLink to="/">top</NavLink>
                 <NavLink to="addDevice">add device</NavLink>
-                <NavLink to="editUser">edit user info</NavLink>
                 <NavLink to="userProfile">profile</NavLink>
 
         </nav>

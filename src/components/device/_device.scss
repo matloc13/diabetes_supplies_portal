@@ -1,0 +1,56 @@
+@import './../../scss/variable.scss';
+
+.device-array-box {
+    width: 100%;
+    margin: 0 auto;
+
+    .devices-card-container {
+        width: 100%;
+        display: grid;
+        grid-gap: 2%;
+        place-items: center;
+    }
+}
+
+.device-card-style {
+    text-align: left;
+    background-color: $med-darkgreen;
+    padding: 2%;
+    width: 80%;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: .5fr 1fr;
+
+
+    .card-model,
+    .card-brand {
+        background-color: $navgreen;
+        padding: 2%
+    }
+
+    .card-name {
+        grid-column: 1/4;
+        background-color: $lightgreen;
+        width: 100%;
+        padding-top: 4%;
+        font-weight: 400;
+
+    }
+
+    .card-link {
+        grid-row: 1;
+        grid-column: 3/4;
+        width: 60%;
+        place-self: center;
+
+        h4 {
+            color: $med-navgreen;
+        }
+    }
+}
+
+.card {
+    color: $mediumgreen;
+    font-family: 'Source Sans Pro', sans-serif;
+}

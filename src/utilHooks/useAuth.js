@@ -18,8 +18,8 @@ const useAuth = () => {
         execLogin(form)
     }
 
-    const handleUpdateUser = () => {
-        execUpdateuser();
+    const handleUpdateUser = (form) => {
+        execUpdateuser(form);
     }
 
         const execCreate = async (form) => {
@@ -29,10 +29,10 @@ const useAuth = () => {
                     method: 'POST',
                     body: JSON.stringify({
                         email: form.email,
-                        firstName: form.fName,
-                        lastName: form.lName,
+                        firstName: form.firstName,
+                        lastName: form.lastName,
                         age: form.age,
-                        birthDate: form.bDate,
+                        birthDate: form.birthDate.replace(/T.*$/g, ""),
                         password: form.password
                     }),
                     headers: {
@@ -56,7 +56,7 @@ const useAuth = () => {
                                 firstName: json.firstName,
                                 lastName: json.lastName,
                                 age: json.age,
-                                birthDate: json.birthDate,
+                                birthDate: json.birthDate.replace(/T.*$/g, ""),
                                 password: json.password,
                                 isAuthenticated: true,
                                 id: json._id
@@ -103,7 +103,7 @@ const useAuth = () => {
                                 firstName: json.user.firstName,
                                 lastName: json.user.lastName,
                                 age: json.user.age,
-                                birthDate: json.user.birthDate,
+                                birthDate: json.user.birthDate.replace(/T.*$/g, ""),
                                 password: json.user.password,
                                 isAuthenticated: true,
                                 id: json.user._id,
@@ -135,6 +135,8 @@ const useAuth = () => {
                 });
                 const json = await res.json();
                 await new Promise((resolve) => {
+                    console.log(json);
+                    
                     return resolve(
                         dispatch({
                             type: "UPDATE_USER",
@@ -143,7 +145,7 @@ const useAuth = () => {
                                 lastName: json.lastName,
                                 userName: json.userName,
                                 age: json.age,
-                                birthDate: json.birthDate
+                                birthDate: json.birthDate.replace(/T.*$/g, "")
                             }
                         })
                     )
@@ -154,6 +156,6 @@ const useAuth = () => {
             }
         }
 
-    return [submitting, response, handleCreate, handleLogin, getting,  handleUpdateUser];
+    return [submitting, handleCreate, handleLogin, getting,  handleUpdateUser];
 }
 export default useAuth;

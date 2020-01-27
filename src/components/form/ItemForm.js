@@ -9,11 +9,13 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
     const {value:date, bind:bindDate, reset:resetDate } = useInput(" ");
     const {value:item, bind:bindItem, reset:resetItem } = useInput(" ");
     const {value:note, bind:bindNote, reset: resetNote } = useInput(" ");
+    const {value:boxLabel, bindboxLabel, reset:resetboxLabel } = useInput(" ");
     const [type, setType] = useState(" ");
     const [formInfo, setFormInfo] = useState({
         user_id: " ",
         device_id: " ",
         date: Date,
+        boxLabel: " ",
         item: " ",
         note: " "
     })
@@ -28,6 +30,7 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
         resetDate();
         resetItem();
         resetNote();
+        resetboxLabel();
         return bundleSubmit();
     }
 
@@ -56,6 +59,7 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
                 device_id: deviceId,
                 token: user.token,
                 date,
+                boxLabel,
                 item,
                 note,
             })
@@ -80,40 +84,71 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
             <>
                 <h2>{formType} form</h2>
 
-                <fieldset>
+                <fieldset className="field-label">
                     <input 
                         type="date" 
                         name="date" 
                         id="date" 
                         {...bindDate}/>
-                    <label htmlFor="date">Date</label>
+                    <label 
+                        htmlFor="date" 
+                        className="label-style">
+                            <span className="content-style">Date</span>
+                    </label>
                 </fieldset>
     
-                <fieldset>
+                <fieldset className="field-label">
                     <input 
                         type="text" 
                         name="item" 
                         id="item" 
                         {...bindItem} />
-                    <label htmlFor="item">Item</label>
+                    <label 
+                        htmlFor="item" 
+                        className="label-style">
+                            <span className="content-style">Item</span>
+                    </label>
                 </fieldset>
+
+                {
+                    formType === "device aquired" &&
+                    <fieldset className="field-label">
+                        <input 
+                            type="text" 
+                            name="boxLabel" 
+                            id="boxLabel" 
+                            {...bindboxLabel} />
+                        <label 
+                            htmlFor="boxLabel" 
+                            className="label-style">
+                                <span className="content-style">Box Label</span>
+                        </label>
+                    </fieldset>
+
+                }
+
+                
     
-                <fieldset>
+                <fieldset className="field-label">
                     <input 
                         type="text" 
                         name="note" 
                         id="note" 
                         {...bindNote}/>
-                    <label htmlFor="note">Notes</label>
+                    <label 
+                        htmlFor="note" 
+                        className="label-style">
+                            <span className="content-style">Note</span>
+                    </label>
                 </fieldset>
                 
-                <fieldset>
+                <fieldset className="field-label">
                     <input 
                         type="submit" 
                         name="submit" 
                         id="submit" 
                         value={formType}/>
-                    <label htmlFor="submit"></label>
+                    <label htmlFor="submit" className="label-style"></label>
                 </fieldset>
             </>
             }

@@ -1,13 +1,12 @@
 import React from 'react';
 import EditUserForm from './../form/EditUserForm';
-import UserNav from './../nav/UserNav';
 
 const EditUser = () => {
     return (
-        <main>
-            <UserNav />
+        <section>
+            <h4>Update Info</h4>
             <EditUserForm />
-        </main>
+        </section>
     )
 }
 export default EditUser;

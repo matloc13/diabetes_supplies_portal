@@ -1,0 +1,27 @@
+@import 'variable';
+@import './../components/nav/nav';
+@import './../components/device/device';
+@import './../components/form/form';
+@import './../components/user/user';
+
+
+
+.App {
+  text-align: center;
+  margin: 0;
+  // background-color: $lightgreen;
+}
+
+body {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}

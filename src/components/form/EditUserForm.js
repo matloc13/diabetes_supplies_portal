@@ -1,10 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
-// import useInput from './../../utilHooks/useInput';
 import useAuth from './../../utilHooks/useAuth';
 import UserContext from './../../contexts/userContext';
-
-
-
 
     const init = {
         firsName: " ",
@@ -13,29 +9,31 @@ import UserContext from './../../contexts/userContext';
         age: 0,
         birthDate: " "
     }
+    
 const EditUserForm = () => {
     const {user} = useContext(UserContext);
 
     const handleChange = (e) => {
-        setValues({...values, [e.target.id]: e.target.value})
+        e.persist();
+        setValues({...values, [e.target.id]: e.target.value});
     }
 
-    const [submitting, response, handleCreate, handleLogin, getting,  handleUpdateUser] = useAuth();
+    const [submitting, handleCreate, handleLogin, getting,  handleUpdateUser] = useAuth();//eslint-disable-line
 
     const [formInfo, setFormInfo] = useState(null);
-    const [values, setValues] = useState(init)
+    const [values, setValues] = useState(init);
+
     useEffect(() => {
         setValues({
             ...values,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            userName: user.userName,
-            age: user.age,
-            birthDate: user.birthDate,
+            firstName: user.firstName || " " ,
+            lastName: user.lastName || " ",
+            userName: user.userName || " ",
+            age: user.age || 0,
+            birthDate: user.birthDate.replace(/T.*$/g, ""),
         })
         return () => {};
-    }, [user])
-   
+    }, [user])//eslint-disable-line
 
     useEffect(() => {
         setFormInfo({
@@ -46,13 +44,14 @@ const EditUserForm = () => {
             age: values.age,
             birthDate: values.birthDate,
             token: user.token,
-            user_id: user.user_id
+            user_id: user.id
         })
         return () => {};
     }, [values])//eslint-disable-line
 
-    const handleSubmit = () => {
-       setValues(init)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setValues(init);
         return handleUpdateUser(formInfo);
         
     }
@@ -67,7 +66,7 @@ const EditUserForm = () => {
                         value={values.firstName}
                         onChange={handleChange}/>
                     <label htmlFor="firstName" className="label-style">
-                       <span className="content-style">First Name</span> 
+                        <span className="content-style">First Name</span> 
                     </label>
                 </fieldset>
                    
@@ -79,7 +78,7 @@ const EditUserForm = () => {
                         value={values.lastName}
                         onChange={handleChange}/>
                     <label htmlFor="lastName" className="label-style">
-                       <span className="content-style">Last Name</span> 
+                        <span className="content-style">Last Name</span> 
                     </label>
                 </fieldset>
                 <fieldset className="field-label">

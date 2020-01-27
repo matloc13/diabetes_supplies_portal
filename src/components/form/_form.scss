@@ -1,4 +1,7 @@
+@import './../../scss/variable.scss';
+
 form {
+    font-family: 'Source Sans Pro', sans-serif;
     height: 100%;
     margin: 10% auto;
     width: 90%;
@@ -8,11 +11,9 @@ form {
     box-sizing: border-box;
     justify-content: space-around;
     padding: 4%;
-    background-color: lavenderblush;
+    background-image: linear-gradient(to bottom right, $med-darkgreen, $lightgreen);
     box-shadow: 1px 0 10px lavender;
     border-radius: 1%;
-
-
 }
 
 fieldset {
@@ -25,39 +26,36 @@ fieldset {
 
     input {
         border: none;
-        width: 100%;
+        width: 96%;
         height: 100%;
         font-size: 1.4em;
         cursor: pointer;
-        // background-color: rgb(240, 240, 247);
-        background-color: lavenderblush;
-        box-shadow: 0 1px 0 0 lavender;
+        color: $navgreen;
+        box-shadow: 0 1px 0 0 $med-navgreen inset;
         outline: none;
+        border-radius: 1%;
         padding-left: 4%;
     }
 
     input[type="submit"] {
         font-weight: 900;
         text-indent: initial;
-        text-align: center;
-        color: darken(lavender, 30%);
+        text-align: right;
+        color: $navgreen;
         border-image: none;
         border-width: 0;
         box-shadow: none;
         width: 100%;
         background-color: transparent;
 
-
-
         &:active {
-            background-color: lighten(lavenderblush, 2%);
-            color: blue;
+            background-color: lighten($lightgreen, 2%);
+            color: $navgreen;
         }
 
         &:focus {
             outline: lavenderblush;
         }
-
     }
 
     .label-style {
@@ -87,11 +85,12 @@ fieldset {
         position: absolute;
         bottom: -11px;
         left: 0px;
-        width: 100%;
+        width: 96%;
         transition: all .3s ease;
         // color: lavender;
         font-size: 14px;
-        color: green;
+        font-weight: 200;
+        color: $navgreen;
         margin: 1%;
         transform: translateY(-150%);
         z-index: 1;
@@ -101,15 +100,15 @@ fieldset {
 
 .field-label {
     input:focus+.label-style .content-style {
-        transform: translateY(50%);
-        font-size: 14px;
-        color: green;
-        // background-color: lighten(lavenderblush, 2%);
-        // text-align: end;
+        transform: translateY(-290%);
+        font-size: 16px;
+        color: $navgreen;
+        font-weight: 300;
     }
 
     input:focus {
         background-color: lighten(lavenderblush, 2%);
+        font-weight: 800;
     }
 }
 

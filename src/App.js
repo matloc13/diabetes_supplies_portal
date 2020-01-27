@@ -6,10 +6,10 @@ import Dashboard from './pages/Dashboard';
 import DeviceProfile from './pages/DeviceProfile';
 import UserProfile from './pages/UserProfile';
 import AddDevice from './pages/AddDevice';
-import EditUser from './components/user/EditUser';
+import { EditUser, UserNote } from './components/user/index';
 import {DeviceFailures, DeviceChanges, DeviceAquired} from './components/device/index';
 
-import './App.scss';
+import './scss/App.scss';
 
 const App = () => {
     const {user} = useContext(UserContext);
@@ -21,15 +21,19 @@ const App = () => {
                 {
                     user.isAuthenticated ?
                     <Router>
-                        <Dashboard path="/"/>
-                            <UserProfile path="userProfile"/>
+                        <Dashboard path="/">
                             <AddDevice path="addDevice" />
-                            <EditUser path="editUser" />
+                            
+                        </Dashboard>
                             <DeviceProfile path="deviceProfile/:deviceId">  
                                 <DeviceChanges path="dChange" />
-                                <DeviceAquired  path="dAquire" />
+                                <DeviceAquired path="dAquire" />
                                 <DeviceFailures path="dFailure" />  
                             </DeviceProfile>
+                            <UserProfile path="userProfile">
+                                <EditUser path="editUser" />
+                                <UserNote path="userNote" />
+                            </UserProfile>
                     </Router>
 
                     :

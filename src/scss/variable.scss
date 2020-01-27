@@ -1,0 +1,22 @@
+// colors
+
+$navgreen: rgb(48, 65, 31);
+$med-navgreen: lighten($navgreen, 30%);
+$darkgreen: rgb(12, 27, 19);
+$textgreen: rgb(3, 12, 19);
+$lightgreen: rgb(216, 230, 195);
+$mediumgreen: rgb(135, 150, 70);
+$med-darkgreen: lighten($darkgreen, 70%);
+$grey: rgb(176, 177, 182);
+
+// fonts Vollkorn', serif 'Source Sans Pro', sans-serif;
+
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Vollkorn:600,900&display=swap');
+
+
+// resets
+
+* {
+    outline: $mediumgreen;
+}

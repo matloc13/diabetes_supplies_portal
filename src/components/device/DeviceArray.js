@@ -6,25 +6,49 @@ const DeviceArray = () => {
     const { allDevs } = useContext(UserContext);
 
     return (
-        <section>
+        <section className="device-array-box">
             
-            <ul>
+            <ul className="devices-card-container">
+                <b></b>
                 {
                 allDevs && 
                     allDevs.map((ele, index) => {
                         // console.log(ele);
                         
                         return (
-                            <li key={index}>
-                                Name:{ele.deviceName} Brand: {ele.brand} Model: {ele.model}
-                                <NavLink 
-                                    to={`deviceProfile/${ele._id}`}>        
-                                        view
-                                </NavLink>
+                            <li 
+                                key={index} 
+                                className="device-card-style">
+                                <span 
+                                    className="card-brand card "> 
+                                    <h3>
+                                        {ele.brand}
+                                    </h3>
+                                </span> 
+                                <span 
+                                    className="card-model card "> 
+                                    <h3>
+                                        {ele.model}
+                                    </h3>
+                                </span>
+                                <span 
+                                    className="card-name card">
+                                        <h3>
+                                            {ele.deviceName}
+                                        </h3>
+                                </span> 
+                                <span className="card-link">
+                                    <NavLink 
+                                        className="card-link card"
+                                        to={`deviceProfile/${ele._id}`}>        
+                                        <h4>device data</h4>
+                                    </NavLink>
+                                </span>
                             </li>
                         )
                     })
                 }
+                <b></b>
             </ul>
             {
                 !allDevs && 

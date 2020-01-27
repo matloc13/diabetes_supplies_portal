@@ -5,7 +5,7 @@ import NewItem from './../newItem/NewItem';
 const DeviceChanges = ({deviceId, changes}) => {
 
     return (
-            <article>
+            <article className="device-add-item">
                 <h2>device changes</h2>
                 <NewItem
                     itemType="device change"

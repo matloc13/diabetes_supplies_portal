@@ -2,7 +2,7 @@ import React from 'react';
 import NewItem from './../newItem/NewItem';
 const DeviceAquired = ({deviceId, aquired}) => {
     return (
-        <article>
+        <article className="device-add-item">
             <h2>device arrivals</h2>
             <NewItem
                 itemType="device aquired"

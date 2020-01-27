@@ -3,7 +3,7 @@ import NewItem from './../newItem/NewItem';
 
 const DeviceFailures = ({ deviceId, failures }) => {
     return (
-        <article>
+        <article className="device-add-item">
             <h2>device failures</h2>
             <NewItem
                 itemType="device failure"

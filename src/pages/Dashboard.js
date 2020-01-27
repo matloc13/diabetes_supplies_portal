@@ -1,8 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Router } from '@reach/router';
 import DeviceArray from './../components/device/DeviceArray';
 import UserNav from './../components/nav/UserNav';
 import useGetDeviceInfo from './../utilHooks/useGetDeviceInfo';
 import UserContext from './../contexts/userContext';
+import UserProfile from './../pages/UserProfile';
+import AddDevice from './../pages/AddDevice';
+
 const Dashboard = () => {
     const { user } = useContext(UserContext);
     const [load, setLoad] = useState({
@@ -27,12 +31,16 @@ const Dashboard = () => {
         return () => {
             ac.abort()
         };
-    }, [])
+    }, [])//eslint-disable-line
     
     return (
         <main>
 
             <UserNav />
+            <Router>
+                <UserProfile path="userProfile"/>
+                <AddDevice path="addDevice" />
+            </Router>
             <DeviceArray />
            
         </main>

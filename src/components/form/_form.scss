@@ -1,7 +1,8 @@
 @import './../../scss/variable.scss';
 
 form {
-    font-family: 'Source Sans Pro', sans-serif;
+    // font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
     // height: 100%;
     margin: 10% auto;
     width: 90%;
@@ -49,12 +50,12 @@ fieldset {
         background-color: transparent;
 
         &:active {
-            background-color: lighten(lavenderblush, 2%);
+            background-color: $lightgreen;
             color: $navgreen;
         }
 
         &:focus {
-            outline: lavenderblush;
+            outline: $lightgreen;
         }
     }
 
@@ -87,7 +88,6 @@ fieldset {
         left: 0px;
         width: 96%;
         transition: all .3s ease;
-        // color: lavender;
         font-size: 14px;
         font-weight: 200;
         color: $navgreen;
@@ -100,7 +100,15 @@ fieldset {
 
 .field-label {
     input:focus+.label-style .content-style {
-        transform: translateY(-300%);
+        transform: translateY(-100%);
+        font-size: 18px;
+        color: $navgreen;
+        font-weight: 300;
+    }
+
+    #birthDate:focus+.label-style .content-style,
+    #date:focus+.label-style .content-style {
+        transform: translateY(-250%);
         font-size: 16px;
         color: $navgreen;
         font-weight: 300;

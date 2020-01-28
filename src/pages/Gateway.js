@@ -36,7 +36,8 @@ const Gateway = () => {
                         handleClick={handleClick}
                         formType={formType}
                      />
-                        <h3>welcome to diabetes supply manager</h3>
+                        <h3>Welcome to Medical supplies/devices manager</h3>
+                        <p>an inventory generator for managing your medical package arrivals and id numbers for each package.  I use it to try my diabetes activities.  changing my insulin pump site and my cgm site.</p>
                 </section>
         }
       {

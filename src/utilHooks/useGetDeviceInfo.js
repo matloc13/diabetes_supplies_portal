@@ -1,5 +1,5 @@
 import { useEffect, useContext, } from 'react';
-import BASE_URL from './../constants/constants';
+import BASE_URL from './../constants';
 import UserContext from './../contexts/userContext';
 
 const useGetDeviceInfo = (load) => {

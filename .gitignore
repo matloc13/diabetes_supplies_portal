@@ -19,7 +19,7 @@
 .env.production.local
 
 # project data
-constants.js
+# constants.js
 constantsL.js
 
 npm-debug.log*

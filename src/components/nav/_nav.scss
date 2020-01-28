@@ -7,31 +7,26 @@ nav {
     justify-content: space-evenly;
     place-items: center;
     height: 8vh;
-    background-image: linear-gradient(90deg, $med-darkgreen, $med-navgreen);
-    font-family: 'Vollkorn', serif;
-
-
+    background-color: $darkgreen;
+    font-family: 'Audiowide', cursive;
 
     button {
-        // padding: 12%;
-        padding: 3.4%;
-        background-color: $navgreen;
+
+        padding: 1.8% 6%;
+        background-color: transparent;
         color: $lightgreen;
         font-weight: 600;
         font-size: 1.1em;
+        border: none;
+
+        &:active {
+            background-color: $navgreen;
+        }
     }
 
     .gateway {
         margin: 0 auto;
         height: 40vh;
 
-
-
-
     }
 }
-
-// section {
-//     width: 100%;
-
-// }

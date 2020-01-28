@@ -61,10 +61,8 @@ const DeviceForm = () => {
 		return () => {};
 	}, [ data ])//eslint-disable-line
 
-
 	return (
 		<form onSubmit={handleSubmit}>
-
 			{
 				submitting === "inaction" &&
 					<h2>...submitting</h2>
@@ -75,6 +73,7 @@ const DeviceForm = () => {
 					id="device" 
 					type="text" 
 					name="device"
+					autoFocus
 					{...bindDevice}/>
 				<label htmlFor="device" className="label-style">
 					<span className="content-style">Device Name</span>

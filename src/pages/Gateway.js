@@ -28,15 +28,15 @@ const Gateway = () => {
     }
 
   return (
-    <main>
+    <main className="profile-gateway">
         {
             formType === "welcome" && 
                 <section>
-                    <h3>welcome to diabetes supply manager</h3>
                     <GatewayNav
                         handleClick={handleClick}
                         formType={formType}
                      />
+                        <h3>welcome to diabetes supply manager</h3>
                 </section>
         }
       {

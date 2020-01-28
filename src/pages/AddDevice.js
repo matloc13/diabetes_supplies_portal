@@ -3,7 +3,7 @@ import DeviceForm from './../components/form/DeviceForm';
 
 const AddDevice = () => {
     return (
-        <main>
+        <main className="profile-form">
             <DeviceForm />
         </main>
     )

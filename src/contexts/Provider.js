@@ -4,6 +4,7 @@ import UserContext from './userContext';
 import userReducer from '../reducers/userReducer';
 import deviceReducer from './../reducers/deviceReducer';
 import allDevsReducer from './../reducers/allDevsReducer';
+import curReducer from './../reducers/curReducer';
 
     const initUser = {
         firstName: " ",
@@ -18,6 +19,7 @@ import allDevsReducer from './../reducers/allDevsReducer';
     }
 
     const initDevice = {
+        id: " ",
         user_id: " ",
         deviceName: " ",
         brand: " ",
@@ -32,10 +34,11 @@ import allDevsReducer from './../reducers/allDevsReducer';
 const Provider = () => {
     
     const [user, dispatchUser] = useReducer(userReducer, initUser);
+    const [curDev, dispatchCurDev] = useReducer(curReducer, initDevice)
     const [device, dispatchDevice] = useReducer(deviceReducer, initDevice);
     const [allDevs, dispatchDevArray] = useReducer(allDevsReducer, []);
     const dispatch = (action) => {
-        [dispatchUser, dispatchDevice, dispatchDevArray].forEach((fn) => {
+        [dispatchUser, dispatchDevice, dispatchDevArray, dispatchCurDev].forEach((fn) => {
             fn(action);
         })
     }
@@ -59,7 +62,7 @@ const Provider = () => {
         )
     } else {
         return (
-            <UserContext.Provider value={{user, device, allDevs, dispatch}}>
+            <UserContext.Provider value={{user, device, allDevs, curDev, dispatch}}>
                 <App />
             </UserContext.Provider>
         )

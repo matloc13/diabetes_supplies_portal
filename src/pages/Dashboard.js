@@ -34,7 +34,7 @@ const Dashboard = () => {
     }, [])//eslint-disable-line
     
     return (
-        <main>
+        <main className="profile-dashboard">
 
             <UserNav />
             <Router>

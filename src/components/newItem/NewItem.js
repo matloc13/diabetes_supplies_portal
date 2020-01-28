@@ -1,32 +1,25 @@
-import React, { useState } from 'react';
-import ItemForm from './../form/ItemForm';
-const NewItem = ({itemType, deviceId}) => {
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faPager } from '@fortawesome/free-solid-svg-icons';
 
-    const [formReveal, setFormReveal] = useState(false)
+
+const NewItem = ({itemType, deviceId, handleClick}) => {
+
+
     console.log({itemType, deviceId});
-     
-    const handleClick = () => {
-        return setFormReveal(true)
-    }
+   
     return (
-        <article className="btn-container">
+        <article className={`btn-container`}>
             <label htmlFor="btn-new">
                 <button 
                     id="btn-new"
                     className={`btn-item ${itemType}`}
                     onClick={handleClick}>
-                    {`add new ${itemType}`}
+                    <FontAwesomeIcon icon={faPlus} /> <FontAwesomeIcon icon={faPager} size="2x" />  {itemType.replace(/\s.*?/g,)}
                 </button>
             </label>
 
-            {
-                formReveal  &&
-                    <ItemForm
-                        formType={itemType}
-                        reveal={setFormReveal}
-                        deviceId={deviceId}
-                    />
-            }
+         
         </article>
   )
 }

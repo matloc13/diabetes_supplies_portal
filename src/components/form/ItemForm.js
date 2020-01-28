@@ -38,11 +38,11 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
     useEffect(() => {
         const checkType = () => {
             switch(formType) {
-                case "device change":
+                case "change":
                     return setType("change");
-                case "device aquired":
+                case "aquired":
                     return setType("aquire");
-                case "device failure":
+                case "failure":
                     return setType("failure");
                 default:
                     return;
@@ -76,7 +76,7 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
     }, [data])//eslint-disable-line
 
     return (
-        <form onSubmit={handleSubmit} className={formType}>
+        <form onSubmit={handleSubmit} className={`${formType} item-form`}>
             {
                 submitting ?
                 <h2>submitting...</h2>

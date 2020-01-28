@@ -3,18 +3,28 @@
 @import './../components/device/device';
 @import './../components/form/form';
 @import './../components/user/user';
+@import './../components//newItem/newItem';
+@import './../pages/pages';
 
 
 
 .App {
   text-align: center;
   margin: 0;
-  // background-color: $lightgreen;
+  // height: 100vh;
+  background-color: lighten($lightgreen, 10%);
 }
 
 body {
   margin: 0;
 }
+
+// h2,
+// h3,
+// h4,
+// h5 {
+//   margin: 0;
+// }
 
 ul {
   margin: 0;

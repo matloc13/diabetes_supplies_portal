@@ -102,6 +102,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                         id="firstName" 
                         type="text"
                         name="firstName"
+                        autoFocus
                         {...bindfName}/>
                     <label htmlFor="firstName" className="label-style">
                        <span className="content-style">First Name</span> 
@@ -145,7 +146,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                     <input 
                         id="age" 
                         name="age"
-                        type="text"
+                        type="number"
                         {...bindage}/>
                     <label htmlFor="age" className="label-style">
                         <span className="content-style">Age</span>
@@ -195,6 +196,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                             id="email" 
                             type="email"
                             name="email"
+                            autoComplete="true"
                             {...bindemail}/>
                         <label htmlFor="email" className="label-style">
                             <span className="content-style">{formType} email</span>                    
@@ -207,6 +209,8 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                             id="password"
                             name="password" 
                             type="password"
+                            autoFocus
+                            autoComplete="true"
                             {...bindpassword}/>
                         <label htmlFor="password" className="label-style">
                             <span className="content-style">{formType} password</span> 

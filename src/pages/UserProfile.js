@@ -9,7 +9,7 @@ const UserProfile = () => {
   console.log(user);
   
   return (
-    <main>
+    <main className="profile-user">
         <UserProfileNav />
             <aside>
                 <p>

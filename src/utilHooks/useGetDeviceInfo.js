@@ -1,9 +1,6 @@
 import { useEffect, useContext, } from 'react';
 import BASE_URL from './../constants';
-import BASE_URL_LOCAL from './../constantsL';
 import UserContext from './../contexts/userContext';
-
-const baseUrl = BASE_URL_LOCAL || BASE_URL;
 
 const useGetDeviceInfo = (load) => {
     const { allDevs, dispatch } = useContext(UserContext);
@@ -13,7 +10,7 @@ const useGetDeviceInfo = (load) => {
             console.log('getting');
             const promise1 = async (user_id, token) => { 
                 try {
-                    const res = await fetch(`${baseUrl}/device/${user_id}`, {
+                    const res = await fetch(`${BASE_URL}/device/${user_id}`, {
                         method: "GET",
                         headers: {
                             'Accept': 'application/json',
@@ -41,7 +38,7 @@ const useGetDeviceInfo = (load) => {
         if (load.type === "getSingle") {
             const getSingle = async (device_id, token) => {
                 try {
-                    const res = await fetch(`${baseUrl}/device/${device_id}/get`,{
+                    const res = await fetch(`${BASE_URL}/device/${device_id}/get`,{
                         method: "GET",
                         headers: {
                             'Accept': 'application/json',

@@ -1,9 +1,7 @@
 import { useState, useContext } from 'react';
 import BASE_URL from '../constants';
 import UserContext from '../contexts/userContext';
-import BASE_URL_LOCAL from './../constantsL';
 
-const baseUrl = BASE_URL_LOCAL || BASE_URL;
 
 const useAuth = () => {
     const [ submitting, setSubmitting ] = useState(false);
@@ -28,7 +26,7 @@ const useAuth = () => {
         const execCreate = async (form) => {
             try {
                 setSubmitting(true);
-                const res = await fetch(`${baseUrl}/user/create`, {
+                const res = await fetch(`${BASE_URL}/user/create`, {
                     method: 'POST',
                     body: JSON.stringify({
                         email: form.email,
@@ -80,7 +78,7 @@ const useAuth = () => {
 
             try {
                 setSubmitting(true);
-                const res = await fetch(`${baseUrl}/user/login`, {
+                const res = await fetch(`${BASE_URL}/user/login`, {
                     method: "POST",
                     body: JSON.stringify({
                         email: form.email,
@@ -127,7 +125,7 @@ const useAuth = () => {
 
         const execUpdateuser = async (form) => {
             try {
-                const res = await fetch(`${baseUrl}/user/${form.user_id}/update`, {
+                const res = await fetch(`${BASE_URL}/user/${form.user_id}/update`, {
                     method: "PUT",
                     body: JSON.stringify(),
                     headers: {

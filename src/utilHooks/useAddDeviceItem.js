@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
 import BASE_URL from './../constants';
-import BASE_URL_LOCAL from './../constantsL';
-
-const baseUrl = BASE_URL_LOCAL || BASE_URL;
 
 const useAddDeviceItem = () => {
     const [data, setData] = useState({});
@@ -19,7 +16,7 @@ const useAddDeviceItem = () => {
             try {
                 console.log('posting change');
                 
-                const res = await fetch(`${baseUrl}/device/${url}`, {
+                const res = await fetch(`${BASE_URL}/device/${url}`, {
                     method: "POST",
                     body: JSON.stringify({
                         user_id: form.user_id,

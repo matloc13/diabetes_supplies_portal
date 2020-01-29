@@ -19,7 +19,7 @@ const UserProfile = () => {
                     <li>full name: {user.firstName} {user.lastName}</li>
                     <li>{user.userName}</li>
                     <li>age: {user.age}</li>
-                    <li>birth date: {user.birthDate}</li>
+                    <li>birth date: {user.birthDate.replace(/T.*$/g, "")}</li>
                 </ul>
             </aside>
         <Router>

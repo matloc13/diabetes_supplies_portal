@@ -31,7 +31,7 @@ const useAddDevice = () => {
                         'Content-Type': 'application/json',
                         'authorization': `${submitForm.token}`,
                     },
-                    credentials: 'same-origin'
+                    credentials: 'include'
                 });
     
                 const json = await res.json();

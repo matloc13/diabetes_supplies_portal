@@ -196,7 +196,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                             id="email" 
                             type="email"
                             name="email"
-                            autoComplete="true"
+                            autoComplete="current-email"
                             {...bindemail}/>
                         <label htmlFor="email" className="label-style">
                             <span className="content-style">{formType} email</span>                    
@@ -210,7 +210,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                             name="password" 
                             type="password"
                             autoFocus
-                            autoComplete="true"
+                            autoComplete="current-password"
                             {...bindpassword}/>
                         <label htmlFor="password" className="label-style">
                             <span className="content-style">{formType} password</span> 

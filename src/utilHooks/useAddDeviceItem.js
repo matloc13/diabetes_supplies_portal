@@ -8,7 +8,7 @@ const useAddDeviceItem = () => {
     const [url, setUrl] = useState('');
 
     useEffect(() => {
-        console.log(form);
+        // console.log(form);
         
         if (form.device_id) {
             const execItemOp = async () => {

@@ -89,8 +89,8 @@ const useAuth = () => {
                     headers: {
                         'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
-                    }
-
+                    },
+                    credentials: 'include',
                 });
                 const json = await res.json();
                 await new Promise((resolve) => {
@@ -121,6 +121,8 @@ const useAuth = () => {
             } finally {
                 if (response) {
                     setSubmitting(false);
+                    console.log(response);
+                    
                 }
             }
         }

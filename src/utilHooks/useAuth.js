@@ -1,6 +1,9 @@
 import { useState, useContext } from 'react';
 import BASE_URL from '../constants';
 import UserContext from '../contexts/userContext';
+import BASE_URL_LOCAL from './../constantsL';
+
+const baseUrl = BASE_URL_LOCAL || BASE_URL;
 
 const useAuth = () => {
     const [ submitting, setSubmitting ] = useState(false);
@@ -25,14 +28,14 @@ const useAuth = () => {
         const execCreate = async (form) => {
             try {
                 setSubmitting(true);
-                const res = await fetch(`${BASE_URL}/user/create`, {
+                const res = await fetch(`${baseUrl}/user/create`, {
                     method: 'POST',
                     body: JSON.stringify({
                         email: form.email,
                         firstName: form.firstName,
                         lastName: form.lastName,
                         age: form.age,
-                        birthDate: form.birthDate.replace(/T.*$/g, ""),
+                        birthDate: form.birthDate,
                         password: form.password
                     }),
                     headers: {
@@ -56,7 +59,7 @@ const useAuth = () => {
                                 firstName: json.firstName,
                                 lastName: json.lastName,
                                 age: json.age,
-                                birthDate: json.birthDate.replace(/T.*$/g, ""),
+                                birthDate: json.birthDate,
                                 password: json.password,
                                 isAuthenticated: true,
                                 id: json._id
@@ -77,7 +80,7 @@ const useAuth = () => {
 
             try {
                 setSubmitting(true);
-                const res = await fetch(`${BASE_URL}/user/login`, {
+                const res = await fetch(`${baseUrl}/user/login`, {
                     method: "POST",
                     body: JSON.stringify({
                         email: form.email,
@@ -124,7 +127,7 @@ const useAuth = () => {
 
         const execUpdateuser = async (form) => {
             try {
-                const res = await fetch(`${BASE_URL}/user/${form.user_id}/update`, {
+                const res = await fetch(`${baseUrl}/user/${form.user_id}/update`, {
                     method: "PUT",
                     body: JSON.stringify(),
                     headers: {

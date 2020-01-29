@@ -1,7 +1,9 @@
 import { useEffect, useState, useContext } from 'react';
 import BASE_URL from './../constants';
+import BASE_URL_LOCAL from './../constantsL';
 import UserContext from './../contexts/userContext';
 
+const baseUrl = BASE_URL_LOCAL || BASE_URL;
 
 const useGetDeviceItems = (device_id) => {
 
@@ -18,7 +20,7 @@ const useGetDeviceItems = (device_id) => {
 
     const promChanges = async () => { 
         try {
-            const res = await fetch(`${BASE_URL}/device/${device_id}/change`, {
+            const res = await fetch(`${baseUrl}/device/${device_id}/change`, {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',
@@ -37,7 +39,7 @@ const useGetDeviceItems = (device_id) => {
 
     const promFailures = async () => {
         try {
-            const res = await fetch(`${BASE_URL}/device/${device_id}/failure`, {
+            const res = await fetch(`${baseUrl}/device/${device_id}/failure`, {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',
@@ -56,7 +58,7 @@ const useGetDeviceItems = (device_id) => {
 
     const promAquired = async () => {
         try {
-            const res = await fetch(`${BASE_URL}/device/${device_id}/aquire`, {
+            const res = await fetch(`${baseUrl}/device/${device_id}/aquire`, {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',

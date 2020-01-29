@@ -50,11 +50,11 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
             if (formType === "create") {
                 setformInfo( {...formInfo,
                     email,
-                    fName,
-                    lName,
-                    uName,
+                    firstName: fName,
+                    lastName: lName,
+                    userName: uName,
                     age,
-                    bDate,
+                    birthDate: bDate,
                     password
                   }
                 )

@@ -9,13 +9,13 @@ const useAuth = () => {
     const [getting, setGetting] = useState("waiting");
     const { dispatch } = useContext(UserContext);
   
-    const handleCreate = (e, form) => {
-        e.persist();
+    const handleCreate = ( form) => {
+        // e.persist();
         execCreate(form)
     }
 
-    const handleLogin = (e, form) => {
-        e.persist();
+    const handleLogin = ( form) => {
+        // e.persist();
         execLogin(form)
     }
 

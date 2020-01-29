@@ -30,7 +30,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                 resetpassword();
                 resetemail();
                 resetuName();
-                return handleCreate(e, formInfo);
+                return handleCreate( formInfo);
             case "login":
                 resetfName();
                 resetlName();
@@ -39,7 +39,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                 resetpassword();
                 resetemail();
                 resetuName();
-                return handleLogin(e, formInfo);
+                return handleLogin( formInfo);
             default:
                 throw new Error('did not submit');
         }

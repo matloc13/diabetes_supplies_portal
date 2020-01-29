@@ -32,6 +32,7 @@ const useAuth = () => {
                         email: form.email,
                         firstName: form.firstName,
                         lastName: form.lastName,
+                        userName: form.userName,
                         age: form.age,
                         birthDate: form.birthDate,
                         password: form.password
@@ -56,6 +57,7 @@ const useAuth = () => {
                                 email: json.email,
                                 firstName: json.firstName,
                                 lastName: json.lastName,
+                                userName: json.userName,
                                 age: json.age,
                                 birthDate: json.birthDate,
                                 password: json.password,
@@ -103,6 +105,7 @@ const useAuth = () => {
                                 email: json.user.email,
                                 firstName: json.user.firstName,
                                 lastName: json.user.lastName,
+                                userName: json.user.userName,
                                 age: json.user.age,
                                 birthDate: json.user.birthDate.replace(/T.*$/g, ""),
                                 password: json.user.password,

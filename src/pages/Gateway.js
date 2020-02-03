@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import LoginForm from '../components/form/LoginForm';
 import GatewayNav from './../components/nav/gatewayNav';
-// import useAuth from './../utilHooks/useAuth';
 
 const Gateway = () => {
-    // const [submitting, response, handleCreate, handleLogin, getting, handleGetUser] = useAuth();
-
-    // useEffect(() => {
-    //     handleGetUser();
-
-    // }, [])
 
     const [formType, setformType] = useState("welcome");
 

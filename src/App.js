@@ -14,7 +14,7 @@ import './scss/App.scss';
 
 const App = () => {
     const {user} = useContext(UserContext);
-    const [submitting, handleCreate, handleLogin, getting,  handleUpdateUser] = useAuth();
+    const { handleLogin } = useAuth();
     // console.log(user);
     useEffect(() => {
         if (!user.token && user.isAuthenticated) {

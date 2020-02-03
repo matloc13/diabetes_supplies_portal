@@ -18,7 +18,7 @@ const EditUserForm = () => {
         setValues({...values, [e.target.id]: e.target.value});
     }
 
-    const [submitting, handleCreate, handleLogin, getting,  handleUpdateUser] = useAuth();//eslint-disable-line
+    const { handleUpdateUser } = useAuth();
 
     const [formInfo, setFormInfo] = useState(null);
     const [values, setValues] = useState(init);

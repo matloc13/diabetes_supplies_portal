@@ -160,6 +160,6 @@ const useAuth = () => {
             }
         }
 
-    return [submitting, handleCreate, handleLogin, getting,  handleUpdateUser];
+    return {submitting, handleCreate, handleLogin, getting,  handleUpdateUser};
 }
 export default useAuth;

@@ -14,7 +14,7 @@ const { value:bDate, bind:bindbDate, reset:resetbDate } = useInput('');
 const { value:password, bind:bindpassword, reset:resetpassword } = useInput('');
 const { value:email, bind:bindemail, reset:resetemail } = useInput('');
   
-    const [ submitting, handleCreate, handleLogin, getting ] = useAuth();
+    const { submitting, handleCreate, handleLogin, getting } = useAuth();
     const [formInfo, setformInfo] = useState(null);
     
    

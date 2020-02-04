@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import useManageMeds from './../../utilHooks/useManageMeds';
 import useInput from './../../utilHooks/useInput';
-import UserContext from './../../contexts/userContext';
 
 const MedicineForm = () => {
 
-    const {user} = useContext(UserContext);
     const {addMed} = useManageMeds();
     
     const { value:name, bind:bindname, reset:resetname } = useInput('');
@@ -15,7 +13,9 @@ const MedicineForm = () => {
     const { value:doctor, bind:binddoctor, reset:resetdoctor } = useInput('');
     const { value:pharmacy, bind:bindpharmacy, reset:resetpharmacy } = useInput('');
     const { value:size, bind:bindsize, reset:resetsize } = useInput('');
+
     const [formInfo, setFormInfo] = useState({})
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         resetname();
@@ -25,7 +25,7 @@ const MedicineForm = () => {
         resetdoctor();
         resetpharmacy();
         resetsize();
-       return addMed({token: user.token, user_id: user.id, med: formInfo,});
+       return addMed(formInfo);
     }
 
     useEffect(() => {
@@ -43,7 +43,6 @@ const MedicineForm = () => {
         )
         return () => {};
     }, [name, description, date,prescriptionNumber, doctor, pharmacy, size])//eslint-disable-line
-
 
     return (
         <form onSubmit={handleSubmit}>

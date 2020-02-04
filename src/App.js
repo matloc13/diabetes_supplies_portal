@@ -8,6 +8,7 @@ import UserProfile from './pages/UserProfile';
 import AddDevice from './pages/AddDevice';
 import { EditUser, UserNote } from './components/user/index';
 import {DeviceFailures, DeviceChanges, DeviceAquired} from './components/device/index';
+import AddMedicine from './components/medicine/AddMedicine';
 import useAuth from './utilHooks/useAuth';
 
 import './scss/App.scss';
@@ -30,6 +31,7 @@ const App = () => {
                     <Router>
                         <Dashboard path="/">
                             <AddDevice path="addDevice" />
+                            <AddMedicine path="addMed" />
                             
                         </Dashboard>
                             <DeviceProfile path="deviceProfile/:deviceId">  

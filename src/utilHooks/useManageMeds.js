@@ -1,60 +1,123 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import BASE_URL from './../constants';
+import UserContext from './../contexts/userContext';
+
 const useManageItem = () => {
-    const [meds, setMeds] = useState([{}]);
+    const { user, med, meds, dispatch} = useContext(UserContext);
     const url = `${BASE_URL}/medicine`
 
     const getAllMeds =  async (search) => {
         try {
-            const res = await fetch(`${url}/${search.user_id}`, {
+            const res = await fetch(`${url}/${user.id}`, {
                 medthod: "GET",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'authorization': search.token
+                    'authorization': user.token
                 },
                 credentials: 'includes'
             });
     
             const json = await res.json();
     
-            setMeds(json);
+            await new Promise(resolve => {
+                return resolve(
+                    dispatch({
+                        type: "SET_MEDS",
+                        meds: json
+                    })
+                )
+            })
             
         } catch (error) {
             console.error(error);
         }
     }
 
-    const getMedOne = async (search) => {
+    const getMedOne = async (search, id) => {
         try {
-            const res = await fetch(`${url}/`)
+            const res = await fetch(`${url}/medOne/${id}`, {
+                medthod: "GET",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': user.token
+                },
+                credentials: 'includes'
+            })
+
+            const json = await res.json();
+
+
+            await new Promise(resolve => {
+                return resolve(
+                    dispatch({
+                        type: "GET_MED",
+                        payload: {
+                            id: json.id,
+                            name: json.name,
+                            user_id: user.id,
+                            description: json.description,
+                            prescriptionNumber: json.prescriptionNumber,
+                            doctor: json.doctor,
+                            pharmacy: json.pharmacy,
+                            size: json.size
+                        }
+                    })
+                )
+            })
         } catch (error) {
+            console.error(error);
             
         }
     }
 
     const addMed = async (search) => {
+        console.log(search);
+        search = {
+            name: search.name,
+            user_id: user.id,
+            description: search.description,
+            prescriptionNumber: search.prescriptionNumber,
+            doctor: search.doctor,
+            pharmacy: search.pharmacy,
+            size: search.size
+        }
         try {
             const res = await fetch(`${url}/addMed`, {
                 method: "POST",
-                body: JSON.stringify(search.med),
+                body: JSON.stringify(search),
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'authorization': search.token
+                    'authorization': user.token
                 }
             });
     
             const json = await res.json();
             await new Promise((resolve) => {
+                console.log(json);
+                
                 return resolve(
-                    setMeds([...meds,{json}])
-                )
+                    dispatch({
+                        type: "SET_MED",
+                        payload: {
+                            id: json._id,
+                            name: json.name,
+                            user_id: user.id,
+                            description: json.description,
+                            prescriptionNumber: json.prescriptionNumber,
+                            doctor: json.doctor,
+                            pharmacy: json.pharmacy,
+                            size: json.size,
+                            finished: false
+                        }
+                    })
+                );
             });
         } catch (error) {
             console.error(error);
         }
-    
     }
 
     const addMalfunction = () => {
@@ -67,6 +130,7 @@ const useManageItem = () => {
 
 
     return {
+        med,
         meds,
         getAllMeds,
         getMedOne,

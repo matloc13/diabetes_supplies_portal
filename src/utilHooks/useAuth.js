@@ -10,12 +10,10 @@ const useAuth = () => {
     const { dispatch } = useContext(UserContext);
   
     const handleCreate = ( form) => {
-        // e.persist();
         execCreate(form)
     }
 
     const handleLogin = ( form) => {
-        // e.persist();
         execLogin(form)
     }
 
@@ -90,7 +88,6 @@ const useAuth = () => {
                         'Accept': 'application/json, text/plain, */*',
                         'Content-Type': 'application/json'
                     }
-                    // credentials: 'include',
                 });
                 const json = await res.json();
                 await new Promise((resolve) => {

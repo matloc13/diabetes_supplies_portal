@@ -1,6 +1,7 @@
 import React from 'react';
-import MedicineRefill from './MedicineRefill';
+import { Link, Router } from '@reach/router';
 import useManageMeds from './../../utilHooks/useManageMeds';
+import {MedicineProfile, MedicineRefill} from './index';
 
 const MedicineList = () => {
 
@@ -9,16 +10,22 @@ const MedicineList = () => {
         <ul>
             {
                 meds ?
-                meds.map((ele, i) => {
+                meds.map((ele) => {
                     return (
-                        <MedicineRefill
-                        item={ele}
-                     />
+                        <li key={ele.id}>
+                            <Link to={`medicineprofile/${ele.id}`}>
+                                {ele.name}
+                            </Link>
+                        </li>
                     )
                 }) :
                <li> <h3>NO meds on record</h3> </li>
               
             } 
+            <Router>
+                <MedicineProfile path="medicineProfile/:med_id"/>
+                <MedicineRefill path="medicineRefill/:med_id" />
+            </Router>
             
         </ul>
     )

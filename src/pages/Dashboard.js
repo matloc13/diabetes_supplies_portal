@@ -6,6 +6,7 @@ import useGetDeviceInfo from './../utilHooks/useGetDeviceInfo';
 import UserContext from './../contexts/userContext';
 import UserProfile from './../pages/UserProfile';
 import AddDevice from './../pages/AddDevice';
+import AddMedicine from '../components/medicine/AddMedicine';
 
 const Dashboard = () => {
     const { user } = useContext(UserContext);
@@ -40,6 +41,7 @@ const Dashboard = () => {
             <Router>
                 <UserProfile path="userProfile"/>
                 <AddDevice path="addDevice" />
+                <AddMedicine path="addMed" />
             </Router>
             <DeviceArray />
            

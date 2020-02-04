@@ -3,9 +3,11 @@ import { Router } from '@reach/router';
 import UserContext from '../contexts/userContext';
 import { EditUser, UserNote } from './../components/user/index';
 import UserProfileNav from './../components/nav/userProfileNav';
+import MedicineList from './../components/medicine/MedicineList';
+
 
 const UserProfile = () => {
-  const { user } = useContext(UserContext);
+  const { user, allDevs } = useContext(UserContext);
   console.log(user);
   
   return (
@@ -27,7 +29,7 @@ const UserProfile = () => {
             <UserNote path="userNote" />
         </Router>
          
-            {/* <aside>
+            <aside>
                 {
                     allDevs.map((ele, i) => {
                     return (
@@ -35,7 +37,13 @@ const UserProfile = () => {
                         )
                     })
                 }
-            </aside> */}
+            </aside>
+
+            <aside>
+                {
+                    <MedicineList />
+                }
+            </aside>
 
 
 

@@ -7,7 +7,10 @@ const MedicineRefill = ({item}) => {
                     <header>name</header>
                         <div>
                             <span>date</span>
+                            <p>description</p>
                             <p>pharmacy</p>
+                            <p>doctor</p>
+                            <p>size</p>
                         </div>
                 </>
             }

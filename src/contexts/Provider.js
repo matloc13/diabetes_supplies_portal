@@ -1,11 +1,11 @@
 import React, { useReducer, useEffect } from 'react';
 import App from './../App';
-import UserContext from './userContext';
+import { UserContext }from './index';
 import userReducer from '../reducers/userReducer';
 import deviceReducer from './../reducers/deviceReducer';
 import allDevsReducer from './../reducers/allDevsReducer';
 import curReducer from './../reducers/curReducer';
-import medsReducer from './../reducers/medsReducer';
+import medsArrReducer from './../reducers/medsArrReducer';
 import medReducer from './../reducers/medReducer';
 
     const initUser = {
@@ -44,7 +44,7 @@ import medReducer from './../reducers/medReducer';
         size: " ",
     };
 
-    // const initMeds = [initMed];
+
 
 const Provider = () => {
     
@@ -53,9 +53,10 @@ const Provider = () => {
     const [device, dispatchDevice] = useReducer(deviceReducer, initDevice);
     const [allDevs, dispatchDevArray] = useReducer(allDevsReducer, []);
     const [med, dispatchMed] = useReducer(medReducer, initMed);
-    const [meds, dispatchMeds] = useReducer(medsReducer, [initMed]);
+    const [medsArr, dispatchMeds] = useReducer(medsArrReducer, []);
+
     const dispatch = (action) => {
-        [dispatchUser, dispatchDevice, dispatchDevArray, dispatchCurDev, dispatchMeds, dispatchMed].forEach((fn) => {
+        [dispatchUser, dispatchDevice, dispatchDevArray, dispatchCurDev,  dispatchMed, dispatchMeds ].forEach((fn) => {
             fn(action);
         })
     }
@@ -63,10 +64,8 @@ const Provider = () => {
         // user && console.log(user);
         // allDevs && console.log(allDevs);
         // med && console.log(med);
-        // meds && console.log(meds);
-        
-        
-        
+        medsArr && console.log(medsArr);
+         
         useEffect(() => {
             if (device) {
                 dispatch({ type: "ADD_DEVICE_TO_ARR", payload: device })
@@ -75,16 +74,13 @@ const Provider = () => {
         }, [device])
         
         useEffect(() => {
-            console.log(med);
-            
+            // console.log(med);
             if (med) {
-                console.log(meds);
-                
-                dispatch({ type: "ADD_MED_TO_MEDS",  med })
+                dispatch({ type: "ADD_MED_TO_MEDS",  payload: med })
             }
             return () => {};
-        }, [med, meds])
-    
+        }, [med])
+
 
     if (!user) {
         return (
@@ -94,17 +90,15 @@ const Provider = () => {
         )
     } else {
         return (
-            <UserContext.Provider value={
-                {
+            <UserContext.Provider value={{
                     user, 
                     device, 
                     allDevs, 
-                    meds, 
-                    med, 
+                    medsArr,
                     curDev, 
                     dispatch
-                    }}>
-                <App />
+            }}>
+                    <App />
             </UserContext.Provider>
         )
     }

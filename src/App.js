@@ -14,7 +14,7 @@ import useAuth from './utilHooks/useAuth';
 import './scss/App.scss';
 
 const App = () => {
-    const {user} = useContext(UserContext);
+    const {user, medsArr } = useContext(UserContext);
     const { handleLogin } = useAuth();
     // console.log(user);
     useEffect(() => {
@@ -23,6 +23,8 @@ const App = () => {
         }
         return () => {};
     }, [user])
+    console.log(medsArr);
+    
     return (
         <div className="App">
            {/* ideal place for react.lazy() */}

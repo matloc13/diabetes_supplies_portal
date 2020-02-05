@@ -1,4 +1,6 @@
 const medReducer = (state, action) => {
+    console.log(state);
+    
     switch (action.type) {
         case "SET_MED":
             return {

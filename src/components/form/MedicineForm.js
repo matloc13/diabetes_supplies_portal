@@ -4,7 +4,8 @@ import useInput from './../../utilHooks/useInput';
 
 const MedicineForm = () => {
 
-    const {addMed} = useManageMeds();
+    const {addMed, medsArr} = useManageMeds();
+    console.log(medsArr);
     
     const { value:name, bind:bindname, reset:resetname } = useInput('');
     const { value:description, bind:binddescription, reset:resetdescription } = useInput('');
@@ -15,7 +16,7 @@ const MedicineForm = () => {
     const { value:size, bind:bindsize, reset:resetsize } = useInput('');
 
     const [formInfo, setFormInfo] = useState({})
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         resetname();

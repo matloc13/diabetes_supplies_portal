@@ -3,10 +3,10 @@ import BASE_URL from './../constants';
 import UserContext from './../contexts/userContext';
 
 const useManageItem = () => {
-    const { user, med, meds, dispatch} = useContext(UserContext);
+    const { user, med, medsArr, dispatch} = useContext(UserContext);
     const url = `${BASE_URL}/medicine`
 
-    const getAllMeds =  async (search) => {
+    const getAllMeds =  async () => {
         try {
             const res = await fetch(`${url}/${user.id}`, {
                 medthod: "GET",
@@ -14,17 +14,18 @@ const useManageItem = () => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     'authorization': user.token
-                },
-                credentials: 'includes'
+                }
             });
     
             const json = await res.json();
     
             await new Promise(resolve => {
+                console.log(json);
+                
                 return resolve(
                     dispatch({
                         type: "SET_MEDS",
-                        meds: json
+                        json
                     })
                 )
             })
@@ -34,7 +35,7 @@ const useManageItem = () => {
         }
     }
 
-    const getMedOne = async (search, id) => {
+    const getMedOne = async (id) => {
         try {
             const res = await fetch(`${url}/medOne/${id}`, {
                 medthod: "GET",
@@ -131,7 +132,7 @@ const useManageItem = () => {
 
     return {
         med,
-        meds,
+        medsArr,
         getAllMeds,
         getMedOne,
         addMed,

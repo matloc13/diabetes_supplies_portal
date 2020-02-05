@@ -8,7 +8,7 @@ const allDevsReducer = (state, action) => {
         case "SET_DEVICE_ARR":
             return state = action.payload;
         default:
-            return;
+            return state;
     }
 }
 

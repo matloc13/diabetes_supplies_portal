@@ -14,6 +14,7 @@ const MedicineForm = () => {
     const { value:doctor, bind:binddoctor, reset:resetdoctor } = useInput('');
     const { value:pharmacy, bind:bindpharmacy, reset:resetpharmacy } = useInput('');
     const { value:size, bind:bindsize, reset:resetsize } = useInput('');
+    const { value:refillLength, bind:bindrefillLength, reset:resetrefillLength } = useInput('');
 
     const [formInfo, setFormInfo] = useState({})
 
@@ -26,6 +27,7 @@ const MedicineForm = () => {
         resetdoctor();
         resetpharmacy();
         resetsize();
+        resetrefillLength();
        return addMed(formInfo);
     }
 
@@ -39,7 +41,8 @@ const MedicineForm = () => {
                 prescriptionNumber,
                 doctor,
                 pharmacy,
-                size 
+                size,
+                refillLength 
             }
         )
         return () => {};
@@ -122,6 +125,17 @@ const MedicineForm = () => {
                         {...bindsize}/>
                     <label htmlFor="size" className="label-style">
                         <span className="content-style">Size / Amount per refill</span>
+                    </label>
+                </fieldset>
+
+                <fieldset className="field-label">
+                    <input 
+                        id={"refillLength"}
+                        type="text"
+                        name="refillLength"
+                        {...bindrefillLength}/>
+                    <label htmlFor="refillLength" className="label-style">
+                        <span className="content-style">Refill Duration</span>
                     </label>
                 </fieldset>
 

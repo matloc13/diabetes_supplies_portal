@@ -13,7 +13,7 @@ console.log(meds);
                     return (
                         <li key={ele._id}>
                             <Link to={`medicineProfile/${ele._id}`}>
-                                {ele.name}
+                                {ele.name} {ele.size}
                             </Link>
                         </li>
                     )

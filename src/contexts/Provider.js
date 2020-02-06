@@ -42,6 +42,7 @@ import medReducer from './../reducers/medReducer';
         doctor: " ",
         pharmacy: " ",
         size: " ",
+        refillLength: 0
     };
 
 

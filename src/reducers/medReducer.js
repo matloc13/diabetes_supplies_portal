@@ -13,6 +13,7 @@ const medReducer = (state, action) => {
                 doctor: action.payload.doctor,
                 pharmacy: action.payload.pharmacy,
                 size: action.payload.size,
+                refillLength: action.payload.refillLength,
                 finished: action.payload.finished
             };
         default:

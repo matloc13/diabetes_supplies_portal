@@ -62,7 +62,8 @@ const useManageItem = () => {
                             prescriptionNumber: json.prescriptionNumber,
                             doctor: json.doctor,
                             pharmacy: json.pharmacy,
-                            size: json.size
+                            size: json.size,
+                            refillLength: json.refillLength
                         }
                     })
                 )
@@ -82,7 +83,8 @@ const useManageItem = () => {
             prescriptionNumber: search.prescriptionNumber,
             doctor: search.doctor,
             pharmacy: search.pharmacy,
-            size: search.size
+            size: search.size,
+            refillLength: search.refillLength
         }
         try {
             const res = await fetch(`${url}/addMed`, {
@@ -111,6 +113,7 @@ const useManageItem = () => {
                             doctor: json.doctor,
                             pharmacy: json.pharmacy,
                             size: json.size,
+                            refillLength: json.refillLength,
                             finished: false
                         }
                     })

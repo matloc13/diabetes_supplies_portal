@@ -60,12 +60,11 @@ const Provider = () => {
     const [curDev, dispatchCurDev] = useReducer(curReducer, initDevice)
     const [device, dispatchDevice] = useReducer(deviceReducer, initDevice);
     const [allDevs, dispatchDevArray] = useReducer(allDevsReducer, []);
-    const [med, dispatchMed] = useReducer(medReducer, initMed);
-    const [medsArr, dispatchMeds] = useReducer(medsArrReducer, []);
+    const [medsArr, dispatchMeds] = useReducer(medsArrReducer, [initMed]);
     const [refills, dispatchRefill] = useReducer(refillReducer, initRefill)
 ;
     const dispatch = (action) => {
-        [dispatchUser, dispatchDevice, dispatchDevArray, dispatchCurDev,  dispatchMed, dispatchMeds, dispatchRefill ].forEach((fn) => {
+        [dispatchUser, dispatchDevice, dispatchDevArray, dispatchCurDev,   dispatchMeds, dispatchRefill ].forEach((fn) => {
             fn(action);
         })
     }
@@ -82,13 +81,13 @@ const Provider = () => {
             return () => {};
         }, [device])
         
-        useEffect(() => {
-            // console.log(med);
-            if (med) {
-                dispatch({ type: "ADD_MED_TO_MEDS",  payload: med })
-            }
-            return () => {};
-        }, [med])
+        // useEffect(() => {
+        //     // console.log(med);
+        //     if (med) {
+        //         dispatch({ type: "ADD_MED_TO_MEDS",  payload: med })
+        //     }
+        //     return () => {};
+        // }, [med])
 
     if (!user) {
         return (

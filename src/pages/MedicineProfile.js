@@ -14,11 +14,6 @@ const MedicineProfile = ({med_id}) => {
         return () => {};
     }, [])
 
-    // useEffect(() => {
-    //     getRefills();
-    //     return () => {};
-    // }, [refills])
-
     const med = medsArr.filter(ele => ele._id === med_id);
  
     return (
@@ -46,9 +41,7 @@ const MedicineProfile = ({med_id}) => {
                                 item={ele}
                             />
                             </li>
-                        )
-                    })
-                    
+                    )})
                 }
                 </ul>
                 

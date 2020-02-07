@@ -44,7 +44,7 @@ const useManageItem = () => {
                     'Content-Type': 'application/json',
                     'authorization': user.token
                 },
-                credentials: 'includes'
+                credentials: 'include'
             });
             const json = await res.json();
 
@@ -93,7 +93,7 @@ const useManageItem = () => {
                     'Content-Type': 'application/json',
                     'authorization': user.token
                 },
-                credentials: 'include'
+                credentials: 'same-origin'
             });
     
             const json = await res.json();
@@ -137,7 +137,8 @@ const useManageItem = () => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     'authorization': user.token
-                }
+                },
+                credentials: 'same-origin'
             });
     
             const json = await res.json();

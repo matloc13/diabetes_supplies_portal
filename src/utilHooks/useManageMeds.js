@@ -123,7 +123,7 @@ const useManageItem = () => {
 
     const addRefill = async (formInfo) => {
         try {
-            const res = await fetch(`${url}/addRefill/${form.med_id}`, {
+            const res = await fetch(`${url}/addRefill/${formInfo.med_id}`, {
                 method: "POST",
                 body: JSON.stringify({ 
                     med_id: formInfo.med_id, 

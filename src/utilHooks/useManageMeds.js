@@ -43,8 +43,7 @@ const useManageItem = () => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     'authorization': user.token
-                },
-                credentials: 'include'
+                }
             });
             const json = await res.json();
 
@@ -74,20 +73,19 @@ const useManageItem = () => {
 
     const addMed = async (search) => {
         console.log(search);
-        search = {
-            name: search.name,
-            user_id: user.id,
-            description: search.description,
-            prescriptionNumber: search.prescriptionNumber,
-            doctor: search.doctor,
-            pharmacy: search.pharmacy,
-            size: search.size,
-            refillLength: search.refillLength
-        }
         try {
             const res = await fetch(`${url}/addMed`, {
                 method: "POST",
-                body: JSON.stringify(search),
+                body: JSON.stringify({
+                    name: search.name,
+                    user_id: user.id,
+                    description: search.description,
+                    prescriptionNumber: search.prescriptionNumber,
+                    doctor: search.doctor,
+                    pharmacy: search.pharmacy,
+                    size: search.size,
+                    refillLength: search.refillLength
+                }),
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -124,15 +122,14 @@ const useManageItem = () => {
     }
 
     const addRefill = async (formInfo) => {
-        const form = { 
-            med_id: formInfo.med_id, 
-            date: formInfo.date, 
-            details: formInfo.details
-        }
         try {
             const res = await fetch(`${url}/addRefill/${form.med_id}`, {
                 method: "POST",
-                body: JSON.stringify(form),
+                body: JSON.stringify({ 
+                    med_id: formInfo.med_id, 
+                    date: formInfo.date, 
+                    details: formInfo.details
+                }),
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',

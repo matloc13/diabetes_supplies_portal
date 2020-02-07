@@ -92,7 +92,8 @@ const useManageItem = () => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     'authorization': user.token
-                }
+                },
+                credentials: 'include'
             });
     
             const json = await res.json();

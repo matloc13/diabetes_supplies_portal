@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from 'react';
 import BASE_URL from './../constants';
-import UserContext from './../contexts/userContext';
+import Store from '../contexts/Store';
 
 const useGetDeviceItems = (device_id) => {
 
-    const { user } = useContext(UserContext);
+    const { user } = useContext(Store);
     const [devices, setDevices] = useState({});
 
     useEffect(() => {

@@ -2,12 +2,12 @@ import React, { useContext, useState, useEffect } from 'react';
 import './_form.scss';
 import useAddDevice from './../../utilHooks/useAddDevice';
 import useInput from './../../utilHooks/useInput';
-import UserContext from './../../contexts/userContext';
+import Store from '../../contexts/Store';
 import BASE_URL from './../../constants';
 
 const DeviceForm = () => {
 
-	const { user, dispatch } = useContext(UserContext);
+	const { user, dispatch } = useContext(Store);
 	const { value:device, bind:bindDevice, reset:resetDevice } = useInput('');
 	const { value:brand, bind:bindbrand, reset:resetbrand } = useInput('');
 	const { value:model, bind:bindmodel, reset:resetmodel } = useInput('');

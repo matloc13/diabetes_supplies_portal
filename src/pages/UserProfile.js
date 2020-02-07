@@ -1,15 +1,13 @@
 import React, { useContext } from 'react';
 import { Router } from '@reach/router';
-import { UserContext} from '../contexts/index';
+import { Store} from '../contexts/index';
 import { EditUser, UserNote } from './../components/user/index';
 import UserProfileNav from './../components/nav/userProfileNav';
 import MedicineList from './../components/medicine/MedicineList';
 
 const UserProfile = () => {
-  const { user, allDevs, curDev, device, medsArr } = useContext(UserContext);
-  console.log({user, medsArr, allDevs, curDev, device});
-  medsArr && console.log(medsArr);
-  
+  const { user, allDevs, medsArr } = useContext(Store);
+//   console.log({user, medsArr, allDevs, curDev, device});
   return (
     <main className="profile-user">
         <UserProfileNav />

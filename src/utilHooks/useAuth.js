@@ -1,13 +1,13 @@
 import { useState, useContext } from 'react';
 import BASE_URL from '../constants';
-import UserContext from '../contexts/userContext';
+import Store from '../contexts/Store';
 
 
 const useAuth = () => {
     const [ submitting, setSubmitting ] = useState(false);
     const [ response, setResponse ] = useState({});
     const [getting, setGetting] = useState("waiting");
-    const { dispatch } = useContext(UserContext);
+    const { dispatch } = useContext(Store);
   
     const handleCreate = ( form) => {
         execCreate(form)

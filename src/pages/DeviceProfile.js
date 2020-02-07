@@ -1,13 +1,13 @@
 import React, {useState, useEffect, useContext } from 'react';
 import {Router} from '@reach/router';
-import UserContext from './../contexts/userContext';
+import Store from '../contexts/Store';
 import useGetDeviceItems from './../utilHooks/useGetDeviceItems';
 import DeviceItemNav from '../components/nav/DeviceItemNav';
 import {DeviceFailures, DeviceChanges, DeviceAquired} from './../components/device/index';
 import useGetDeviceInfo from './../utilHooks/useGetDeviceInfo';
 const DeviceProfile = ({deviceId}) => {
 
-    const {user, curDev} = useContext(UserContext);
+    const {user, curDev} = useContext(Store);
     const [load, setLoad] = useState({})
     const { devices } = useGetDeviceItems(deviceId);
     const {} = useGetDeviceInfo(load);

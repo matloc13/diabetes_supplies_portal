@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import useAuth from './../../utilHooks/useAuth';
-import UserContext from './../../contexts/userContext';
+import Store from '../../contexts/Store';
 
     const init = {
         firsName: " ",
@@ -11,7 +11,7 @@ import UserContext from './../../contexts/userContext';
     }
     
 const EditUserForm = () => {
-    const {user} = useContext(UserContext);
+    const {user} = useContext(Store);
 
     const handleChange = (e) => {
         e.persist();

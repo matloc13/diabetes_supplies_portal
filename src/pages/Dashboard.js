@@ -3,14 +3,13 @@ import { Router } from '@reach/router';
 import DeviceArray from './../components/device/DeviceArray';
 import UserNav from './../components/nav/UserNav';
 import useGetDeviceInfo from './../utilHooks/useGetDeviceInfo';
-import UserContext from './../contexts/userContext';
-import UserProfile from './../pages/UserProfile';
-import AddDevice from './../pages/AddDevice';
-import AddMedicine from '../components/medicine/AddMedicine';
+import Store from '../contexts/Store';
+import {UserProfile, AddDevice} from './../pages/index';
+import {AddMedicine, MedicineList }from '../components/medicine/index';
 import useManageMeds from './../utilHooks/useManageMeds'
 
 const Dashboard = () => {
-    const { user, medsArr } = useContext(UserContext);
+    const { user, medsArr } = useContext(Store);
     const [load, setLoad] = useState({
         type: "not",
         user_id: ' ',
@@ -49,6 +48,7 @@ const Dashboard = () => {
                 <AddMedicine path="addMed" />
             </Router>
             <DeviceArray />
+            <MedicineList meds={medsArr} />
            
         </main>
     )

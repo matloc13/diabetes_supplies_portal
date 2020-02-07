@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, Router } from '@reach/router';
-import {MedicineProfile, MedicineRefill} from './index';
+import { Link } from '@reach/router';
 
 const MedicineList = ({meds}) => {
 console.log(meds);
@@ -9,23 +8,17 @@ console.log(meds);
         <ul>
             {
                 meds ?
-                meds.map((ele) => {
+                meds.map((ele, i) => {
                     return (
-                        <li key={ele._id}>
-                            <Link to={`medicineProfile/${ele._id}`}>
+                        <li key={i}>
+                            <Link to={`/medicineProfile/${ele._id}`}>
                                 {ele.name} {ele.size}
                             </Link>
                         </li>
                     )
                 }) :
                <li> <h3>NO meds on record</h3> </li>
-              
-            } 
-            <Router>
-                <MedicineProfile path="medicineProfile/:med_id"/>
-                <MedicineRefill path="medicineRefill/:med_id" />
-            </Router>
-            
+            }        
         </ul>
     )
 }

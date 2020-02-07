@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import NavLink from './../nav/NavLink';
-import UserContext from './../../contexts/userContext';
+import Store from '../../contexts/Store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDigitalTachograph } from '@fortawesome/free-solid-svg-icons';
 
 const DeviceArray = () => {
-    const { allDevs } = useContext(UserContext);
+    const { allDevs } = useContext(Store);
 
     return (
         <section className="device-array-box">

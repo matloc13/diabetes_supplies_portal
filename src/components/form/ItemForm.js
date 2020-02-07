@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import useAddDeviceItem from './../../utilHooks/useAddDeviceItem';
 import useInput from './../../utilHooks/useInput';
-import UserContext from './../../contexts/userContext';
+import Store from '../../contexts/Store';
 
 const ItemForm = ({ formType, reveal, deviceId }) => {
-    const {user } = useContext(UserContext);
+    const {user } = useContext(Store);
     const [ {data, submitting }, setForm, setUrl ] = useAddDeviceItem();
     const {value:date, bind:bindDate, reset:resetDate } = useInput(" ");
     const {value:item, bind:bindItem, reset:resetItem } = useInput(" ");

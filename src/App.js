@@ -1,20 +1,22 @@
 import React, { useContext, useEffect } from 'react';
 import { Router } from '@reach/router';
-import UserContext from './contexts/userContext';
-import Gateway from './pages/Gateway';
-import Dashboard from './pages/Dashboard';
-import DeviceProfile from './pages/DeviceProfile';
-import UserProfile from './pages/UserProfile';
-import AddDevice from './pages/AddDevice';
+import Store from './contexts/Store';
+import {
+    MedicineProfile, 
+    DeviceProfile, 
+    Dashboard,
+    Gateway, 
+    UserProfile, 
+    AddDevice
+} from './pages/index';
 import { EditUser, UserNote } from './components/user/index';
 import {DeviceFailures, DeviceChanges, DeviceAquired} from './components/device/index';
-import AddMedicine from './components/medicine/AddMedicine';
+import {AddMedicine, AddRefill} from './components/medicine/index';
 import useAuth from './utilHooks/useAuth';
-
 import './scss/App.scss';
 
 const App = () => {
-    const {user, medsArr } = useContext(UserContext);
+    const {user, medsArr } = useContext(Store);
     const { handleLogin } = useAuth();
     // console.log(user);
     useEffect(() => {
@@ -34,13 +36,19 @@ const App = () => {
                         <Dashboard path="/">
                             <AddDevice path="addDevice" />
                             <AddMedicine path="addMed" />
-                            
                         </Dashboard>
+
                             <DeviceProfile path="deviceProfile/:deviceId">  
                                 <DeviceChanges path="dChange" />
                                 <DeviceAquired path="dAquire" />
                                 <DeviceFailures path="dFailure" />  
                             </DeviceProfile>
+
+
+                            <MedicineProfile path="medicineProfile/:med_id">
+                                <AddRefill path="addRefill/:med_id" />
+                            </MedicineProfile>
+
                             <UserProfile path="userProfile">
                                 <EditUser path="editUser" />
                                 <UserNote path="userNote" />

@@ -1,12 +1,13 @@
 import React, { useReducer, useEffect } from 'react';
 import App from './../App';
-import { UserContext }from './index';
+import { Store }from './index';
 import userReducer from '../reducers/userReducer';
 import deviceReducer from './../reducers/deviceReducer';
 import allDevsReducer from './../reducers/allDevsReducer';
 import curReducer from './../reducers/curReducer';
 import medsArrReducer from './../reducers/medsArrReducer';
 import medReducer from './../reducers/medReducer';
+import refillReducer from './../reducers/refillReducer';
 
     const initUser = {
         firstName: " ",
@@ -45,6 +46,12 @@ import medReducer from './../reducers/medReducer';
         refillLength: 0
     };
 
+    const initRefill = [{
+        id: " ",
+        date: " ",
+        details: " "
+    }];
+
 
 
 const Provider = () => {
@@ -55,9 +62,10 @@ const Provider = () => {
     const [allDevs, dispatchDevArray] = useReducer(allDevsReducer, []);
     const [med, dispatchMed] = useReducer(medReducer, initMed);
     const [medsArr, dispatchMeds] = useReducer(medsArrReducer, []);
-
+    const [refills, dispatchRefill] = useReducer(refillReducer, initRefill)
+;
     const dispatch = (action) => {
-        [dispatchUser, dispatchDevice, dispatchDevArray, dispatchCurDev,  dispatchMed, dispatchMeds ].forEach((fn) => {
+        [dispatchUser, dispatchDevice, dispatchDevArray, dispatchCurDev,  dispatchMed, dispatchMeds, dispatchRefill ].forEach((fn) => {
             fn(action);
         })
     }
@@ -82,7 +90,6 @@ const Provider = () => {
             return () => {};
         }, [med])
 
-
     if (!user) {
         return (
              <>
@@ -91,16 +98,17 @@ const Provider = () => {
         )
     } else {
         return (
-            <UserContext.Provider value={{
+            <Store.Provider value={{
                     user, 
                     device, 
                     allDevs, 
                     medsArr,
                     curDev, 
-                    dispatch
+                    refills,
+                    dispatch,
             }}>
                     <App />
-            </UserContext.Provider>
+            </Store.Provider>
         )
     }
  

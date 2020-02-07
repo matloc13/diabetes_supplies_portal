@@ -1,7 +1,7 @@
 
-import UserContext from './userContext';
+import Store from './Store';
 
 export {
 
-    UserContext
+    Store
 }

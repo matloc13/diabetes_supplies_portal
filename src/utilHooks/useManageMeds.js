@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import BASE_URL from './../constants';
-import UserContext from './../contexts/userContext';
+import Store from '../contexts/Store';
 
 const useManageItem = () => {
-    const { user, med, medsArr, dispatch} = useContext(UserContext);
+    const { user, med, medsArr, dispatch} = useContext(Store);
     const url = `${BASE_URL}/medicine`
 
     const getAllMeds =  async () => {
@@ -45,10 +45,8 @@ const useManageItem = () => {
                     'authorization': user.token
                 },
                 credentials: 'includes'
-            })
-
+            });
             const json = await res.json();
-
 
             await new Promise(resolve => {
                 return resolve(
@@ -124,6 +122,67 @@ const useManageItem = () => {
         }
     }
 
+    const addRefill = async (formInfo) => {
+        const form = { 
+            med_id: formInfo.med_id, 
+            date: formInfo.date, 
+            details: formInfo.details
+        }
+        try {
+            const res = await fetch(`${url}/addRefill/${form.med_id}`, {
+                method: "POST",
+                body: JSON.stringify(form),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': user.token
+                }
+            });
+    
+            const json = await res.json();
+            await new Promise((resolve) => {
+                console.log(json);
+                return resolve(
+                    dispatch({
+                        type: "ADD_REFILL", 
+                        payload: {
+                            _id: json._id,
+                            med_id: json.med_id,
+                            date: json.date,
+                            details: json.details
+                        } 
+                    }))
+            })
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+    const getRefills = async (med_id) => {
+        try {
+            const res = await fetch(`${url}/getRefill/${med_id}`, {
+                method: "GET",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'authorization': user.token
+                }
+            });
+            const json = await res.json();
+            await new Promise((resolve) => {
+                console.log(json);
+                
+                return resolve(
+                    dispatch({
+                        type: "SET_REFILLS",
+                        payload: json
+                    })
+                )
+            })
+        } catch (error) {
+            
+        }
+    }
     const addMalfunction = () => {
 
     }
@@ -139,6 +198,8 @@ const useManageItem = () => {
         getAllMeds,
         getMedOne,
         addMed,
+        addRefill,
+        getRefills,
         addMalfunction,
         finish
     }

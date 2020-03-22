@@ -17,13 +17,13 @@ const MedicineProfile = ({med_id}) => {
     const med = medsArr.filter(ele => ele._id === med_id);
  
     return (
-        <main className="med-profile">
+        <main className="profile-med">
             <MedNav/>
-            <section>
+            <section className="card-style">
 
                 <header> {med[0].name} </header>
-                <div>
-                    <span> {med[0].date} </span>
+                <div className="card">
+                    <p> {med[0].date} </p>
                     <p> {med[0].description} </p>
                     <p> {med[0].pharmacy} </p>
                     <p> {med[0].doctor} </p>

@@ -5,12 +5,12 @@ const MedicineList = ({meds}) => {
 console.log(meds);
 
     return (
-        <ul>
+        <ul className="card-container">
             {
                 meds ?
                 meds.map((ele, i) => {
                     return (
-                        <li key={i}>
+                        <li key={i} className="card-style">
                             <Link to={`/medicineProfile/${ele._id}`}>
                                 {ele.name} {ele.size}
                             </Link>

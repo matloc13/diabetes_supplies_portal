@@ -6,7 +6,6 @@ const userReducer = (state, action) => {
                 firstName: action.payload.firstName,
                 lastName: action.payload.lastName,
                 userName: action.payload.userName,
-                age: action.payload.age,
                 birthDate: action.payload.birthDate,
                 password: action.payload.password,
                 isAuthenticated: action.payload.isAuthenticated,
@@ -22,12 +21,10 @@ const userReducer = (state, action) => {
                 firstName: action.payload.firstName,
                 lastName: action.payload.lastName,
                 userName: action.payload.userName,
-                age: action.payload.age,
                 birthDate: action.payload.birthDate,
             }
         default:
             return state;
-
   }
 }
 

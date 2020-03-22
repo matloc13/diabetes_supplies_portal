@@ -1,15 +1,11 @@
-import React, { useContext } from 'react';
-import { Redirect } from '@reach/router';
+import React from 'react';
 import NavLink from './NavLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPager, faUserAstronaut, faPlus, faChalkboardTeacher, faPrescriptionBottleAlt} from '@fortawesome/free-solid-svg-icons';
-import Store from './../../contexts/Store';
 
 
 const UserNav = () => {
-    const {user} = useContext(Store);
     return (
-        user.isAuthenticated ?
         <nav className="user-nav">
 
                 <NavLink to="/">
@@ -30,8 +26,6 @@ const UserNav = () => {
                 </NavLink>
 
         </nav>
-        :
-        <Redirect to="/" />
     )
 }
 export default UserNav;

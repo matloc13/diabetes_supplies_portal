@@ -16,7 +16,7 @@ const useCalAge = () => {
     }
     
     const calAge = (dob) => {
-    const cdate = new Date;
+    const cdate = new Date();
     const currentDate = refineDate(cdate.toISOString());
     const birthDate = refineDate(dob);
     

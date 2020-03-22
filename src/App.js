@@ -10,7 +10,7 @@ import {
     AddDevice
 } from './pages/index';
 import { EditUser, UserNote } from './components/user/index';
-import {DeviceFailures, DeviceChanges, DeviceAquired} from './components/device/index';
+import { DeviceFailures, DeviceChanges, DeviceAquired } from './components/device/index';
 import {AddMedicine, AddRefill} from './components/medicine/index';
 import useAuth from './utilHooks/useAuth';
 import './scss/App.scss';

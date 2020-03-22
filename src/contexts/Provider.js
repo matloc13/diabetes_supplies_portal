@@ -13,7 +13,6 @@ import refillReducer from './../reducers/refillReducer';
         firstName: " ",
         lastName: " ",
         userName: " ",
-        age: 0,
         birthDate: Date,
         password: " ",
         isAuthenticated: false,

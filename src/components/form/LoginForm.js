@@ -9,7 +9,6 @@ const signalRef = useRef(signal);
 const { value:fName, bind:bindfName, reset:resetfName } = useInput('');
 const { value:lName, bind:bindlName, reset:resetlName } = useInput('');
 const { value:uName, bind:binduName, reset:resetuName } = useInput('');
-const { value:age, bind:bindage, reset:resetage } = useInput('');
 const { value:bDate, bind:bindbDate, reset:resetbDate } = useInput('');
 const { value:password, bind:bindpassword, reset:resetpassword } = useInput('');
 const { value:email, bind:bindemail, reset:resetemail } = useInput('');
@@ -25,7 +24,6 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                 console.dir(e)
                 resetfName();
                 resetlName();
-                resetage();
                 resetbDate();
                 resetpassword();
                 resetemail();
@@ -34,7 +32,6 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
             case "login":
                 resetfName();
                 resetlName();
-                resetage();
                 resetbDate();
                 resetpassword();
                 resetemail();
@@ -46,14 +43,13 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
   }
   useEffect(() => {
         // console.log(email || firstName || password);
-        if (email || fName || lName || age || bDate || password) {
+        if (email || fName || lName || bDate || password) {
             if (formType === "create") {
                 setformInfo( {...formInfo,
                     email,
                     firstName: fName,
                     lastName: lName,
                     userName: uName,
-                    age,
                     birthDate: bDate,
                     password
                   }
@@ -69,7 +65,7 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
       return () => {
 
       };
-  }, [ email, fName, lName, age, bDate, password, formType ]);//eslint-disable-line
+  }, [ email, fName, lName, bDate, password, formType ]);//eslint-disable-line
 
   useEffect(() => {
     
@@ -140,18 +136,6 @@ const { value:email, bind:bindemail, reset:resetemail } = useInput('');
                     <label htmlFor="email" className="label-style">
                         <span className="content-style">Email</span>    
                     </label>
-                </fieldset>
-                    
-                <fieldset className="field-label">
-                    <input 
-                        id="age" 
-                        name="age"
-                        type="number"
-                        {...bindage}/>
-                    <label htmlFor="age" className="label-style">
-                        <span className="content-style">Age</span>
-                    </label>
-
                 </fieldset>
                  
                 <fieldset className="field-label">

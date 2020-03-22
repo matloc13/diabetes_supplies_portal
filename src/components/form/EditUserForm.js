@@ -6,7 +6,6 @@ import Store from '../../contexts/Store';
         firsName: " ",
         lastName: " ",
         userName: " ",
-        age: 0,
         birthDate: " "
     }
     
@@ -29,7 +28,6 @@ const EditUserForm = () => {
             firstName: user.firstName || " " ,
             lastName: user.lastName || " ",
             userName: user.userName || " ",
-            age: user.age || 0,
             birthDate: user.birthDate.replace(/T.*$/g, ""),
         })
         return () => {};
@@ -41,7 +39,6 @@ const EditUserForm = () => {
             firsName: values.firstName,
             lastName: values.lastName,
             userName: values.userName,
-            age: values.age,
             birthDate: values.birthDate,
             token: user.token,
             user_id: user.id
@@ -91,19 +88,6 @@ const EditUserForm = () => {
                     <label htmlFor="userName" className="label-style">
                         <span className="content-style">Username</span>
                     </label>
-                </fieldset>
-
-                <fieldset className="field-label">
-                    <input 
-                        id="age" 
-                        name="age"
-                        type="text"
-                        value={values.age}
-                        onChange={handleChange}/>
-                    <label htmlFor="age" className="label-style">
-                        <span className="content-style">Age</span>
-                    </label>
-
                 </fieldset>
                  
                 <fieldset className="field-label">

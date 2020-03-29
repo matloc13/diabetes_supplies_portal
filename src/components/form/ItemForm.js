@@ -58,6 +58,7 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
                 user_id: user.id,
                 device_id: deviceId,
                 token: user.token,
+                method: 'POST',
                 date,
                 boxLabel,
                 item,

@@ -6,7 +6,7 @@ const useAddDeviceItem = () => {
     const [submitting, setSubmitting] = useState(false);
     const [form, setForm] = useState({});
     const [url, setUrl] = useState('');
-    const execItemOp = async () => {
+    const execItemOp = async (url) => {
         setSubmitting(true);
     try {
         console.log('posting change');

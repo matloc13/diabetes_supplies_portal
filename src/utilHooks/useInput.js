@@ -1,24 +1,24 @@
 import { useState } from 'react';
 
-const useInput = (init, user) => {
+const useInput = (init) => {
     const [value, setValue] = useState(init);
     const handleChange = (e) => {
         e.persist();
-        return setValue(e.target.value)
-    }
+        return setValue(e.target.value);
+    };
 
     return {
         value,
         setValue,
-        reset: () => setValue(""),
+        reset: () => setValue(''),
         bind: {
             value: value,
-            onChange: e => {
+            onChange: (e) => {
                 // setValue( e.target.value )
-                handleChange(e)
-            }
-        }
-    }
-}
+                handleChange(e);
+            },
+        },
+    };
+};
 
 export default useInput;

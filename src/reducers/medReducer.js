@@ -1,10 +1,10 @@
 const medReducer = (state, action) => {
     console.log(state);
-    
+
     switch (action.type) {
-        case "SET_MED":
+        case 'SET_MED':
             return {
-                ...state, 
+                ...state,
                 id: action.payload.id,
                 name: action.payload.name,
                 user_id: action.payload.user_id,
@@ -14,11 +14,11 @@ const medReducer = (state, action) => {
                 pharmacy: action.payload.pharmacy,
                 size: action.payload.size,
                 refillLength: action.payload.refillLength,
-                finished: action.payload.finished
+                finished: action.payload.finished,
             };
         default:
             return;
     }
-}
+};
 
 export default medReducer;

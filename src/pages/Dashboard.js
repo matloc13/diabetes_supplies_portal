@@ -4,17 +4,17 @@ import DeviceArray from './../components/device/DeviceArray';
 import UserNav from './../components/nav/UserNav';
 import useGetDeviceInfo from './../utilHooks/useGetDeviceInfo';
 import Store from '../contexts/Store';
-import {UserProfile, AddDevice} from './../pages/index';
-import {AddMedicine, MedicineList }from '../components/medicine/index';
-import useManageMeds from './../utilHooks/useManageMeds'
+import { UserProfile, AddDevice } from './../pages/index';
+import { AddMedicine, MedicineList } from '../components/medicine/index';
+import useManageMeds from './../utilHooks/useManageMeds';
 
 const Dashboard = () => {
     const { user, medsArr } = useContext(Store);
     const [load, setLoad] = useState({
-        type: "not",
+        type: 'not',
         user_id: ' ',
-        token: ' '
-})
+        token: ' ',
+    });
 
     const { devices } = useGetDeviceInfo(load);
     const { getAllMeds } = useManageMeds();
@@ -22,35 +22,33 @@ const Dashboard = () => {
     useEffect(() => {
         console.log(devices);
         console.log(medsArr);
-        
+
         const ac = new AbortController();
-        const signal = ac.signal
-        getAllMeds()
+        const signal = ac.signal;
+        getAllMeds();
         setLoad({
-            type: "getting",
+            type: 'getting',
             user_id: user.id,
             token: user.token,
-            signal
-        })
+            signal,
+        });
         return () => {
-            ac.abort()
+            ac.abort();
         };
-    }, [])//eslint-disable-line
-    
+    }, []); //eslint-disable-line
+
     return (
         <main className="profile-dashboard">
-
             <UserNav />
 
             <Router>
-                <UserProfile path="userProfile"/>
+                <UserProfile path="userProfile" />
                 <AddDevice path="addDevice" />
                 <AddMedicine path="addMed" />
             </Router>
             <DeviceArray />
             <MedicineList meds={medsArr} />
-           
         </main>
-    )
-}
+    );
+};
 export default Dashboard;

@@ -7,47 +7,50 @@ const useAddDeviceItem = () => {
     const [form, setForm] = useState({});
     const [url, setUrl] = useState('');
     const execItemOp = async (url) => {
+        console.log('form', form);
+        console.log('url', url);
         setSubmitting(true);
-    try {
-        console.log('posting change');
-        const res = await fetch(`${BASE_URL}/device/${url}`, {
-            method: `${form.method}`,
-            body: JSON.stringify({
-                user_id: form.user_id,
-                device_id: form.device_id,
-                date: form.date,
-                item: form.item,
-                note: form.note
-            }),
-            headers: {
-                'Accept': 'application/json, text/html',
-                'Content-Type': 'application/json',
-                'authorization': form.token
-            },
-            credentials: 'same-origin'
-        });
+        try {
+            console.log('posting change');
+            const res = await fetch(`${BASE_URL}/device/${url}`, {
+                method: `${form.method}`,
+                body: JSON.stringify({
+                    user_id: form.user_id,
+                    device_id: form.device_id,
+                    date: form.date,
+                    item: form.item,
+                    note: form.note,
+                    transmitter_id: form.transmitterId,
+                }),
+                headers: {
+                    Accept: 'application/json, text/html',
+                    'Content-Type': 'application/json',
+                    authorization: form.token,
+                },
+                credentials: 'same-origin',
+            });
 
-        const json = await res.json();
-        await new Promise((resolve) => {
-            console.log(json);
-            return resolve(setData({...data, json}))
-        })
-    } catch (error) {
-        console.error(error);  
-    } finally {
-        setSubmitting(false);
-    }
-}
+            const json = await res.json();
+            await new Promise((resolve) => {
+                console.log(json);
+                return resolve(setData({ ...data, json }));
+            });
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setSubmitting(false);
+        }
+    };
 
     useEffect(() => {
         // console.log(form);
         if (form.device_id) {
-        execItemOp(url);
+            execItemOp(url);
         }
         return () => {};
-    }, [url]) //eslint-disable-line
+    }, [url]);
 
-  return [ { data, submitting }, setForm, setUrl ]
-}
+    return [{ data, submitting }, setForm, setUrl];
+};
 
 export default useAddDeviceItem;

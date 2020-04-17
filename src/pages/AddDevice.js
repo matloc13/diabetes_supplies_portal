@@ -6,6 +6,6 @@ const AddDevice = () => {
         <main className="profile-form">
             <DeviceForm />
         </main>
-    )
-}
+    );
+};
 export default AddDevice;

@@ -5,11 +5,4 @@ import Gateway from './Gateway';
 import MedicineProfile from './MedicineProfile';
 import UserProfile from './UserProfile';
 
-export {
-    AddDevice,
-    Dashboard,
-    DeviceProfile,
-    Gateway,
-    MedicineProfile,
-    UserProfile
-}
+export { AddDevice, Dashboard, DeviceProfile, Gateway, MedicineProfile, UserProfile };

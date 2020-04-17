@@ -3,54 +3,53 @@ import BASE_URL from './../constants';
 import Store from '../contexts/Store';
 
 const useManageItem = () => {
-    const { user, med, medsArr, dispatch} = useContext(Store);
-    const url = `${BASE_URL}/medicine`
+    const { user, med, medsArr, dispatch } = useContext(Store);
+    const url = `${BASE_URL}/medicine`;
 
-    const getAllMeds =  async () => {
+    const getAllMeds = async () => {
         try {
             const res = await fetch(`${url}/${user.id}`, {
-                medthod: "GET",
+                medthod: 'GET',
                 headers: {
-                    'Accept': 'application/json',
+                    Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    'authorization': user.token
-                }
+                    authorization: user.token,
+                },
             });
-    
+
             const json = await res.json();
-    
-            await new Promise(resolve => {
+
+            await new Promise((resolve) => {
                 console.log(json);
-                
+
                 return resolve(
                     dispatch({
-                        type: "SET_MEDS",
-                        json
-                    })
-                )
-            })
-            
+                        type: 'SET_MEDS',
+                        json,
+                    }),
+                );
+            });
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const getMedOne = async (id) => {
         try {
             const res = await fetch(`${url}/medOne/${id}`, {
-                medthod: "GET",
+                medthod: 'GET',
                 headers: {
-                    'Accept': 'application/json',
+                    Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    'authorization': user.token
-                }
+                    authorization: user.token,
+                },
             });
             const json = await res.json();
 
-            await new Promise(resolve => {
+            await new Promise((resolve) => {
                 return resolve(
                     dispatch({
-                        type: "GET_MED",
+                        type: 'GET_MED',
                         payload: {
                             id: json.id,
                             name: json.name,
@@ -60,22 +59,21 @@ const useManageItem = () => {
                             doctor: json.doctor,
                             pharmacy: json.pharmacy,
                             size: json.size,
-                            refillLength: json.refillLength
-                        }
-                    })
-                )
-            })
+                            refillLength: json.refillLength,
+                        },
+                    }),
+                );
+            });
         } catch (error) {
             console.error(error);
-            
         }
-    }
+    };
 
     const addMed = async (search) => {
         console.log(search);
         try {
             const res = await fetch(`${url}/addMed`, {
-                method: "POST",
+                method: 'POST',
                 body: JSON.stringify({
                     name: search.name,
                     user_id: user.id,
@@ -84,23 +82,23 @@ const useManageItem = () => {
                     doctor: search.doctor,
                     pharmacy: search.pharmacy,
                     size: search.size,
-                    refillLength: search.refillLength
+                    refillLength: search.refillLength,
                 }),
                 headers: {
-                    'Accept': 'application/json',
+                    Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    'authorization': user.token
+                    authorization: user.token,
                 },
-                credentials: 'same-origin'
+                credentials: 'same-origin',
             });
-    
+
             const json = await res.json();
             await new Promise((resolve) => {
                 console.log(json);
-                
+
                 return resolve(
                     dispatch({
-                        type: "SET_MED",
+                        type: 'SET_MED',
                         payload: {
                             id: json._id,
                             name: json.name,
@@ -111,85 +109,80 @@ const useManageItem = () => {
                             pharmacy: json.pharmacy,
                             size: json.size,
                             refillLength: json.refillLength,
-                            finished: false
-                        }
-                    })
+                            finished: false,
+                        },
+                    }),
                 );
             });
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const addRefill = async (formInfo) => {
         try {
             const res = await fetch(`${url}/addRefill/${formInfo.med_id}`, {
-                method: "POST",
-                body: JSON.stringify({ 
-                    med_id: formInfo.med_id, 
-                    date: formInfo.date, 
-                    details: formInfo.details
+                method: 'POST',
+                body: JSON.stringify({
+                    med_id: formInfo.med_id,
+                    date: formInfo.date,
+                    details: formInfo.details,
                 }),
                 headers: {
-                    'Accept': 'application/json',
+                    Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    'authorization': user.token
+                    authorization: user.token,
                 },
-                credentials: 'same-origin'
+                credentials: 'same-origin',
             });
-    
+
             const json = await res.json();
             await new Promise((resolve) => {
                 console.log(json);
                 return resolve(
                     dispatch({
-                        type: "ADD_REFILL", 
+                        type: 'ADD_REFILL',
                         payload: {
                             _id: json._id,
                             med_id: json.med_id,
                             date: json.date,
-                            details: json.details
-                        } 
-                    }))
-            })
+                            details: json.details,
+                        },
+                    }),
+                );
+            });
         } catch (error) {
             console.error(error);
         }
-
-    }
-    const getRefills = async (med_id) => {
+    };
+    const getRefills = async (medId) => {
         try {
-            const res = await fetch(`${url}/getRefill/${med_id}`, {
-                method: "GET",
+            const res = await fetch(`${url}/getRefill/${medId}`, {
+                method: 'GET',
                 headers: {
-                    'Accept': 'application/json',
+                    Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    'authorization': user.token
-                }
+                    authorization: user.token,
+                },
             });
             const json = await res.json();
             await new Promise((resolve) => {
                 console.log(json);
-                
+
                 return resolve(
                     dispatch({
-                        type: "SET_REFILLS",
-                        payload: json
-                    })
-                )
-            })
+                        type: 'SET_REFILLS',
+                        payload: json,
+                    }),
+                );
+            });
         } catch (error) {
-            
+            console.error(error);
         }
-    }
-    const addMalfunction = () => {
+    };
+    const addMalfunction = () => {};
 
-    }
-
-    const finish = () => {
-
-    }
-
+    const finish = () => {};
 
     return {
         med,
@@ -200,8 +193,8 @@ const useManageItem = () => {
         addRefill,
         getRefills,
         addMalfunction,
-        finish
-    }
-}
+        finish,
+    };
+};
 
 export default useManageItem;

@@ -27,10 +27,16 @@ const DeviceProfile = ({ deviceId }) => {
     }, [deviceId]);
 
     const revealForm = () => {
-        setReveal({ reveal: !reveal });
+        setReveal(!reveal);
     };
-    console.log(curDev);
-
+    // console.log(curDev);
+    const currentTransmitterId = (curDev) => {
+        if (curDev.length) {
+            const current = curDev[curDev.length - 1].transmitter_id;
+            console.log('current', current);
+            return current;
+        }
+    };
     return (
         <main className="profile-device">
             <DeviceItemNav />
@@ -44,11 +50,24 @@ const DeviceProfile = ({ deviceId }) => {
                             <span className="dev-info">{curDev.deviceName}</span>
                             <span className="dev-label">model:</span>
                             <span className="dev-info">{curDev.model}</span>
-                            <span className="dev-label">serial number:</span>
-                            <span className="dev-info">{curDev.serialNumber}</span>
-                            <span className="devinfo" onClick={revealForm}>
-                                {curDev.transmitterId}
-                            </span>
+
+                            {curDev.transmitterId.length ||
+                            curDev.deviceName === 'CGM Transmitter' ? (
+                                <>
+                                    <span className="dev-label">transmitter number</span>
+                                    <span className="dev-info">
+                                        {currentTransmitterId(curDev.transmitterId)}
+                                    </span>
+                                    <span className="dev-label" onClick={revealForm}>
+                                        update{' '}
+                                    </span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="dev-label">serial number:</span>
+                                    <span className="dev-info">{curDev.serialNumber}</span>
+                                </>
+                            )}
                         </span>
 
                         <h3>
@@ -80,7 +99,11 @@ const DeviceProfile = ({ deviceId }) => {
             </aside>
             {reveal && (
                 <>
-                    <EditForm />
+                    <EditForm
+                        formType={'updateTrans'}
+                        deviceId={deviceId}
+                        revealForm={revealForm}
+                    />
                 </>
             )}
 

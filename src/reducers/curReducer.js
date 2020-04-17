@@ -10,6 +10,7 @@ const curReducer = (state, action) => {
                 model: action.payload.model,
                 serialNumber: action.payload.serialNumber,
                 userSpec: action.payload.userSpec,
+                transmitterId: action.payload.transmitter_id,
             };
         default:
             return;

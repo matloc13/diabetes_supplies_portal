@@ -2,10 +2,10 @@ import React, { useEffect, useState, useContext } from 'react';
 import Store from './../../contexts/Store';
 import useHandleForm from './../../utilHooks/useHandleForm';
 import useAddDeviceItem from './../../utilHooks/useAddDeviceItem';
-const EditForm = ({ formType, deviceId }) => {
+const EditForm = ({ formType, deviceId, revealForm }) => {
     const { user } = useContext(Store);
     const { handleChange, values, reset } = useHandleForm();
-    const [{ data, submitting }, setForm, setUrl] = useAddDeviceItem();
+    const [{ submitting }, setForm, setUrl] = useAddDeviceItem();
     const [formInfo, setFormInfo] = useState({
         date: '',
         transmitterId: '',
@@ -20,16 +20,21 @@ const EditForm = ({ formType, deviceId }) => {
                 token: user.token,
                 method: 'PUT',
                 date: values.date,
-                transmitter_id: values.transmitterId,
+                transmitterId: values.transmitterId,
             });
         }
         return () => {};
     }, [values.date, values.transmitterId]);
-
-    const handleUpdate = () => {
-        reset();
+    const bundleSubmit = () => {
         setForm(formInfo);
-        setUrl(`${deviceId}/transmitter_update`);
+        setUrl(`${formInfo.device_id}/transmitter_update`);
+    };
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        reset();
+        // revealForm();
+        return bundleSubmit();
     };
     return (
         <form onSubmit={handleUpdate} className={`${formType} item-form`}>
@@ -38,7 +43,7 @@ const EditForm = ({ formType, deviceId }) => {
             ) : (
                 <>
                     <h2>{formType} form</h2>
-
+                    <button onClick={revealForm}>close</button>
                     <fieldset className="field-label">
                         <input
                             type="date"

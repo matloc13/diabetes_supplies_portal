@@ -12,7 +12,7 @@ const useHandleForm = () => {
         setValues({ ...values, [e.target.id]: e.target.value });
     };
     const reset = () => {
-        setValues({ '': '' });
+        setValues({});
     };
     return { handleChange, toggle, values, togVal, reset };
 };

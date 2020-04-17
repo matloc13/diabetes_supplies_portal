@@ -18,6 +18,10 @@
 .env.test.local
 .env.production.local
 
+# linters 
+.prettierrc
+.eslintrc.json
+
 # project data
 # constants.js
 # constantsL.js

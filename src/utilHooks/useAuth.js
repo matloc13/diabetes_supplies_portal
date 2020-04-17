@@ -31,8 +31,6 @@ const useAuth = () => {
 
             const json = await res.json();
             await new Promise((resolve) => {
-                console.log(json);
-
                 if (json) {
                     setResponse(json);
                     setGetting('getting');
@@ -50,7 +48,7 @@ const useAuth = () => {
                                 isAuthenticated: true,
                                 id: json._id,
                             },
-                        }),
+                        })
                     );
                 }
             });
@@ -81,7 +79,6 @@ const useAuth = () => {
             await new Promise((resolve) => {
                 setResponse(json);
                 setGetting('getting');
-                console.log(json);
                 setGetting('finished');
                 return resolve(
                     dispatch({
@@ -98,7 +95,7 @@ const useAuth = () => {
                             id: json.user._id,
                             token: json.token,
                         },
-                    }),
+                    })
                 );
             });
         } catch (error) {
@@ -106,7 +103,7 @@ const useAuth = () => {
         } finally {
             if (response) {
                 setSubmitting(false);
-                console.log(response);
+                // console.log(response);
             }
         }
     };
@@ -124,8 +121,7 @@ const useAuth = () => {
             });
             const json = await res.json();
             await new Promise((resolve) => {
-                console.log(json);
-
+                // console.log(json);
                 return resolve(
                     dispatch({
                         type: 'UPDATE_USER',
@@ -136,7 +132,7 @@ const useAuth = () => {
                             age: json.age,
                             birthDate: json.birthDate.replace(/T.*$/g, ''),
                         },
-                    }),
+                    })
                 );
             });
         } catch (error) {

@@ -61,8 +61,7 @@ const DeviceForm = () => {
 
     useEffect(() => {
         if (data.user_id) {
-            console.log(data);
-
+            // console.log(data);
             dispatch({ type: 'CREATE_DEVICE', payload: data });
         }
         return () => {};

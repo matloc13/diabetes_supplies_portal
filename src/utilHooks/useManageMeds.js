@@ -20,13 +20,11 @@ const useManageItem = () => {
             const json = await res.json();
 
             await new Promise((resolve) => {
-                console.log(json);
-
                 return resolve(
                     dispatch({
                         type: 'SET_MEDS',
                         json,
-                    }),
+                    })
                 );
             });
         } catch (error) {
@@ -61,7 +59,7 @@ const useManageItem = () => {
                             size: json.size,
                             refillLength: json.refillLength,
                         },
-                    }),
+                    })
                 );
             });
         } catch (error) {
@@ -70,7 +68,6 @@ const useManageItem = () => {
     };
 
     const addMed = async (search) => {
-        console.log(search);
         try {
             const res = await fetch(`${url}/addMed`, {
                 method: 'POST',
@@ -94,8 +91,6 @@ const useManageItem = () => {
 
             const json = await res.json();
             await new Promise((resolve) => {
-                console.log(json);
-
                 return resolve(
                     dispatch({
                         type: 'SET_MED',
@@ -111,7 +106,7 @@ const useManageItem = () => {
                             refillLength: json.refillLength,
                             finished: false,
                         },
-                    }),
+                    })
                 );
             });
         } catch (error) {
@@ -138,7 +133,7 @@ const useManageItem = () => {
 
             const json = await res.json();
             await new Promise((resolve) => {
-                console.log(json);
+                // console.log(json);
                 return resolve(
                     dispatch({
                         type: 'ADD_REFILL',
@@ -148,7 +143,7 @@ const useManageItem = () => {
                             date: json.date,
                             details: json.details,
                         },
-                    }),
+                    })
                 );
             });
         } catch (error) {
@@ -167,13 +162,11 @@ const useManageItem = () => {
             });
             const json = await res.json();
             await new Promise((resolve) => {
-                console.log(json);
-
                 return resolve(
                     dispatch({
                         type: 'SET_REFILLS',
                         payload: json,
-                    }),
+                    })
                 );
             });
         } catch (error) {

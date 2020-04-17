@@ -21,7 +21,7 @@ const useGetDeviceInfo = (load) => {
                     const json = await res.json();
                     await new Promise((resolve) => {
                         if (json.length > 0) {
-                            console.log(json);
+                            // console.log(json);
 
                             return resolve(dispatch({ type: 'SET_DEVICE_ARR', payload: json }));
                         }
@@ -46,7 +46,7 @@ const useGetDeviceInfo = (load) => {
                     });
                     const json = await res.json();
                     await new Promise((resolve) => {
-                        console.log(json);
+                        // console.log(json);
                         return resolve(
                             dispatch({
                                 type: 'SET_CUR_DEV',

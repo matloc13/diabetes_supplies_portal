@@ -7,10 +7,8 @@ const useAddDevice = () => {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        // const ac = new AbortController();
-        // const signal = ac.signal;
         const handleAdd = async () => {
-            console.log(submitForm);
+            // console.log(submitForm);
 
             setSubmitting('inaction');
             try {

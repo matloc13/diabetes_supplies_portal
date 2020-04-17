@@ -10,6 +10,7 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
     const { value: item, bind: bindItem, reset: resetItem } = useInput(' ');
     const { value: note, bind: bindNote, reset: resetNote } = useInput(' ');
     const { value: boxLabel, bindboxLabel, reset: resetboxLabel } = useInput('');
+    const { value: sensorId, bind: bindsensorId, reset: resetsensorId } = useInput('');
     const [type, setType] = useState(' ');
     const [formInfo, setFormInfo] = useState({
         user_id: ' ',
@@ -31,6 +32,7 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
         resetItem();
         resetNote();
         resetboxLabel();
+        resetsensorId();
         return bundleSubmit();
     };
 
@@ -62,10 +64,11 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
                 boxLabel,
                 item,
                 note,
+                sensorId,
             });
         }
         return () => {};
-    }, [date, item, note, deviceId, user]); //eslint-disable-line
+    }, [date, item, note, deviceId, user, sensorId]); //eslint-disable-line
 
     useEffect(() => {
         if (data.device_id) {
@@ -76,6 +79,7 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
 
     return (
         <form onSubmit={handleSubmit} className={`${formType} item-form`}>
+            {console.log('formType', formType)}
             {submitting ? (
                 <h2>submitting...</h2>
             ) : (
@@ -96,7 +100,16 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
                         </label>
                     </fieldset>
 
-                    {formType === 'device aquired' && (
+                    {formType === 'change' && (
+                        <fieldset className="field-label">
+                            <input type="text" name="sensorId" id="sensorId" {...bindsensorId} />
+                            <label htmlFor="sensorId" className="label-style">
+                                <span className="content-style">Sensor ID</span>
+                            </label>
+                        </fieldset>
+                    )}
+
+                    {formType === 'aquired' && (
                         <fieldset className="field-label">
                             <input type="text" name="boxLabel" id="boxLabel" {...bindboxLabel} />
                             <label htmlFor="boxLabel" className="label-style">
@@ -121,4 +134,5 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
         </form>
     );
 };
+
 export default ItemForm;

@@ -7,8 +7,6 @@ const useAddDeviceItem = () => {
     const [form, setForm] = useState({});
     const [url, setUrl] = useState('');
     const execItemOp = async (url) => {
-        console.log('form', form);
-        console.log('url', url);
         setSubmitting(true);
         try {
             console.log('posting change');
@@ -20,6 +18,7 @@ const useAddDeviceItem = () => {
                     date: form.date,
                     item: form.item,
                     note: form.note,
+                    sensorId: form.sensorId,
                     transmitter_id: form.transmitterId,
                 }),
                 headers: {
@@ -32,7 +31,7 @@ const useAddDeviceItem = () => {
 
             const json = await res.json();
             await new Promise((resolve) => {
-                console.log(json);
+                // console.log(json);
                 return resolve(setData({ ...data, json }));
             });
         } catch (error) {

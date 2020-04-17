@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from '@reach/router';
 
 const MedicineList = ({ meds }) => {
-    console.log('meds', meds);
-
     return (
         <ul className="card-container">
             {meds ? (

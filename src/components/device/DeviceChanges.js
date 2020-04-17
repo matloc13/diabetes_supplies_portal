@@ -4,7 +4,7 @@ import ItemForm from './../form/ItemForm';
 
 const DeviceChanges = ({ deviceId, changes }) => {
     const [formReveal, setFormReveal] = useState(false);
-
+    console.log('changes', changes);
     const handleClick = () => {
         return setFormReveal(true);
     };
@@ -14,24 +14,27 @@ const DeviceChanges = ({ deviceId, changes }) => {
             <article className="device-add-item">
                 <h2>Site Changes</h2>
                 <NewItem itemType="change" deviceId={deviceId} handleClick={handleClick} />
-                <ul className="item-list">
-                    {changes.map((ele, i) => {
-                        return (
-                            <li key={i} className="item">
-                                <h3>{ele.item}</h3>
-                                <span>{ele.date.replace(/T.*$/g, '')}</span>
-                                <div>
-                                    <p>{ele.note}</p>
-                                </div>
-                            </li>
-                        );
-                    })}
-                </ul>
+                {formReveal ? (
+                    <ItemForm formType={'change'} reveal={setFormReveal} deviceId={deviceId} />
+                ) : (
+                    <ul className="item-list">
+                        {changes.map((ele, i) => {
+                            return (
+                                <li key={i} className="item">
+                                    <h3>{ele.item}</h3>
+                                    <span>{ele.date.replace(/T.*$/g, '')}</span>
+                                    <div>
+                                        <p>{ele.note}</p>
+                                        <p className="sensorId">{ele.sensorId}</p>
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                )}
+
                 <b className="space" />
             </article>
-            {formReveal && (
-                <ItemForm formType={'change'} reveal={setFormReveal} deviceId={deviceId} />
-            )}
         </>
     );
 };

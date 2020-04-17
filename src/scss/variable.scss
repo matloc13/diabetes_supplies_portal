@@ -1,7 +1,7 @@
 // colors
 
 $navgreen: rgb(48, 65, 31);
-$navgreen-trans: rgba(48, 65, 31, .9);
+$navgreen-trans: rgba(48, 65, 31, 0.9);
 $med-navgreen: lighten($navgreen, 30%);
 $darkgreen: rgb(12, 27, 19);
 $textgreen: rgb(3, 12, 19);
@@ -10,14 +10,17 @@ $yellowtext: darken($lightgreen, 10%);
 $mediumgreen: rgb(135, 150, 70);
 $med-darkgreen: lighten($darkgreen, 70%);
 $grey: rgb(176, 177, 182);
+$item-green: #012d22;
 
 // fonts Vollkorn', serif 'Source Sans Pro', sans-serif;
 
-
+.list-font {
+    font-size: 19px;
+    font-weight: 400;
+}
 // @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Vollkorn:600,900&display=swap');
 
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:100,300,400,700&display=swap');
-
 
 // resets
 

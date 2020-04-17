@@ -2,9 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faPager } from '@fortawesome/free-solid-svg-icons';
 
-const NewItem = ({ itemType, deviceId, handleClick }) => {
-    console.log({ itemType, deviceId });
-
+const NewItem = ({ itemType, handleClick }) => {
     return (
         <article className={`btn-container`}>
             <label htmlFor="btn-new">

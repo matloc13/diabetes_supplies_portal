@@ -16,7 +16,7 @@ import useAuth from './utilHooks/useAuth';
 import './scss/App.scss';
 
 const App = () => {
-    const { user, medsArr } = useContext(Store);
+    const { user } = useContext(Store);
     const { handleLogin } = useAuth();
     // console.log(user);
     useEffect(() => {
@@ -25,7 +25,6 @@ const App = () => {
         }
         return () => {};
     }, [user]);
-    console.log(medsArr);
 
     return (
         <div className="App">

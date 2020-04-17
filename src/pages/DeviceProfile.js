@@ -12,7 +12,6 @@ const DeviceProfile = ({ deviceId }) => {
     const [reveal, setReveal] = useState(false);
     const { devices } = useGetDeviceItems(deviceId);
     const {} = useGetDeviceInfo(load);
-    console.log(devices);
 
     useEffect(() => {
         if (deviceId) {
@@ -29,14 +28,15 @@ const DeviceProfile = ({ deviceId }) => {
     const revealForm = () => {
         setReveal(!reveal);
     };
-    // console.log(curDev);
+
     const currentTransmitterId = (curDev) => {
         if (curDev.length) {
             const current = curDev[curDev.length - 1].transmitter_id;
-            console.log('current', current);
+            // console.log('current', current);
             return current;
         }
     };
+
     return (
         <main className="profile-device">
             <DeviceItemNav />

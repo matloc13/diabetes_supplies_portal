@@ -20,8 +20,11 @@ const Dashboard = () => {
     const { getAllMeds } = useManageMeds();
 
     useEffect(() => {
-        console.log(devices);
-        console.log(medsArr);
+        if (devices) {
+            console.log('hello', devices.length);
+            // console.log(devices);
+            // console.log(medsArr);
+        }
 
         const ac = new AbortController();
         const signal = ac.signal;

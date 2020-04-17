@@ -4,10 +4,4 @@ import MedicineRefill from './MedicineRefill';
 import AddRefill from './AddRefill';
 import AddMedicine from './AddMedicine';
 
-export {
-    MedicineList,
-    MedicineProfile,
-    MedicineRefill,
-    AddRefill,
-    AddMedicine
-}
+export { MedicineList, MedicineProfile, MedicineRefill, AddRefill, AddMedicine };

@@ -6,7 +6,7 @@ import deviceReducer from './../reducers/deviceReducer';
 import allDevsReducer from './../reducers/allDevsReducer';
 import curReducer from './../reducers/curReducer';
 import medsArrReducer from './../reducers/medsArrReducer';
-import medReducer from './../reducers/medReducer';
+// import medReducer from './../reducers/medReducer';
 import refillReducer from './../reducers/refillReducer';
 
 const initUser = {
@@ -76,7 +76,7 @@ const Provider = () => {
     // user && console.log(user);
     // allDevs && console.log(allDevs);
     // med && console.log(med);
-    // medsArr && console.log(medsArr);
+    // medsArr && console.log('medsArr', medsArr);
 
     useEffect(() => {
         if (device) {

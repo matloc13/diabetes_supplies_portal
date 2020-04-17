@@ -8,7 +8,8 @@ import useManageMeds from './../utilHooks/useManageMeds';
 const MedicineProfile = ({ medId }) => {
     const { medsArr, refills } = useContext(Store);
     const { getRefills } = useManageMeds();
-
+    console.log('medsArr', medsArr);
+    console.log('medId', medId);
     useEffect(() => {
         getRefills(medId);
         return () => {};
@@ -19,16 +20,21 @@ const MedicineProfile = ({ medId }) => {
     return (
         <main className="profile-med">
             <MedNav />
+            {console.log('med', med)}
             <section className="card-style">
-                <header> {med[0].name} </header>
-                <div className="card">
-                    <p> {med[0].date} </p>
-                    <p> {med[0].description} </p>
-                    <p> {med[0].pharmacy} </p>
-                    <p> {med[0].doctor} </p>
-                    <p> {med[0].size} </p>
-                    <p> {med[0].refillLength} </p>
-                </div>
+                {med[0] && med[0].name && (
+                    <>
+                        <header> {med[0].name} </header>
+                        <div className="card">
+                            <p> {med[0].date} </p>
+                            <p> {med[0].description} </p>
+                            <p> {med[0].pharmacy} </p>
+                            <p> {med[0].doctor} </p>
+                            <p> {med[0].size} </p>
+                            <p> {med[0].refillLength} </p>
+                        </div>
+                    </>
+                )}
 
                 <div>
                     <ul>

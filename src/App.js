@@ -43,8 +43,8 @@ const App = () => {
                         <DeviceFailures path="dFailure" />
                     </DeviceProfile>
 
-                    <MedicineProfile path="medicineProfile/:med_id">
-                        <AddRefill path="addRefill/:med_id" />
+                    <MedicineProfile path="medicineProfile/:medId">
+                        <AddRefill path="addRefill/:medId" />
                     </MedicineProfile>
 
                     <UserProfile path="userProfile">

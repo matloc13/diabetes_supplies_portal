@@ -14,16 +14,11 @@ $item-green: #012d22;
 
 // fonts Vollkorn', serif 'Source Sans Pro', sans-serif;
 
-.list-font {
-    font-size: 19px;
-    font-weight: 400;
-}
 // @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Vollkorn:600,900&display=swap');
 
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:100,300,400,700&display=swap');
 
-// resets
-
-* {
-    outline: $mediumgreen;
+.list-font {
+    font-size: 19px;
+    font-weight: 400;
 }

@@ -6,17 +6,21 @@
 @import './../components//newItem/newItem';
 @import './../pages/pages';
 
+// resets
 
+* {
+    outline: $mediumgreen;
+}
 
 .App {
-  text-align: center;
-  margin: 0;
-  // height: 100vh;
-  background-color: lighten($lightgreen, 10%);
+    text-align: center;
+    margin: 0;
+    // height: 100vh;
+    background-color: lighten($lightgreen, 10%);
 }
 
 body {
-  margin: 0;
+    margin: 0;
 }
 
 // h2,
@@ -27,11 +31,11 @@ body {
 // }
 
 ul {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 li {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }

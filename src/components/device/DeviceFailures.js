@@ -4,7 +4,7 @@ import ItemForm from './../form/ItemForm';
 
 const DeviceFailures = ({ deviceId, failures }) => {
     const [formReveal, setFormReveal] = useState(false);
-
+    // const { devices } = useGetDeviceItems(deviceId);
     const handleClick = () => {
         return setFormReveal(true);
     };

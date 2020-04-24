@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import BASE_URL from '../constants';
 import Store from '../contexts/Store';
+console.log('BASE_URL', BASE_URL);
 
 const useAuth = () => {
     const [submitting, setSubmitting] = useState(false);
@@ -64,6 +65,7 @@ const useAuth = () => {
     const execLogin = async (form) => {
         try {
             setSubmitting(true);
+            setGetting('getting');
             const res = await fetch(`${BASE_URL}/user/login`, {
                 method: 'POST',
                 body: JSON.stringify({
@@ -78,7 +80,6 @@ const useAuth = () => {
             const json = await res.json();
             await new Promise((resolve) => {
                 setResponse(json);
-                setGetting('getting');
                 setGetting('finished');
                 return resolve(
                     dispatch({
@@ -103,7 +104,7 @@ const useAuth = () => {
         } finally {
             if (response) {
                 setSubmitting(false);
-                // console.log(response);
+                console.log(response);
             }
         }
     };

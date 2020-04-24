@@ -19,8 +19,8 @@
 .env.production.local
 
 # linters 
-.prettierrc
-.eslintrc.json
+# .prettierrc
+# .eslintrc.json
 
 # project data
 # constants.js

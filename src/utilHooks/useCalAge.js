@@ -2,7 +2,6 @@ const useCalAge = () => {
     const removeTime = (date) => {
         if (typeof date === 'string') {
             return date.split('T')[0];
-            console.log('2', date);
         }
     };
     const refineDate = (date) => {

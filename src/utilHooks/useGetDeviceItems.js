@@ -72,7 +72,7 @@ const useGetDeviceItems = (deviceId) => {
                         changes,
                         failures,
                         aquires,
-                    }),
+                    })
                 );
             }
         });

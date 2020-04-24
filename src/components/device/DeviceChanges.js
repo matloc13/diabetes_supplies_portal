@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import NewItem from './../newItem/NewItem';
 import ItemForm from './../form/ItemForm';
+// import useGetDeviceItems from './../../utilHooks/useGetDeviceItems';
 
 const DeviceChanges = ({ deviceId, changes }) => {
     const [formReveal, setFormReveal] = useState(false);
+    // const { devices } = useGetDeviceItems(deviceId);
     console.log('changes', changes);
     const handleClick = () => {
         return setFormReveal(true);
     };
+
+    // useEffect(() => {
+    //     getChanges(deviceId);
+    //     return () => {};
+    // }, []);
 
     return (
         <>

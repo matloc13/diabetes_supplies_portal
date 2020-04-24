@@ -16,8 +16,7 @@ const MedicineList = ({ meds }) => {
                 })
             ) : (
                 <li>
-                    {' '}
-                    <h3>NO meds on record</h3>{' '}
+                    <h3>NO meds on record</h3>
                 </li>
             )}
         </ul>

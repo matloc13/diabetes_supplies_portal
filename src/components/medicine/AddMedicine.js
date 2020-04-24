@@ -6,6 +6,6 @@ const AddMedicine = () => {
         <main>
             <MedicineForm />
         </main>
-    )
-}
+    );
+};
 export default AddMedicine;

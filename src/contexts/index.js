@@ -1,7 +1,3 @@
-
 import Store from './Store';
 
-export {
-
-    Store
-}
+export { Store };

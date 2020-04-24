@@ -8,8 +8,6 @@ const useAddDevice = () => {
 
     useEffect(() => {
         const handleAdd = async () => {
-            // console.log(submitForm);
-
             setSubmitting('inaction');
             try {
                 const res = await fetch(`${url}`, {

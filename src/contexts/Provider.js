@@ -6,7 +6,6 @@ import deviceReducer from './../reducers/deviceReducer';
 import allDevsReducer from './../reducers/allDevsReducer';
 import curReducer from './../reducers/curReducer';
 import medsArrReducer from './../reducers/medsArrReducer';
-// import medReducer from './../reducers/medReducer';
 import refillReducer from './../reducers/refillReducer';
 
 const initUser = {
@@ -84,14 +83,6 @@ const Provider = () => {
         }
         return () => {};
     }, [device]);
-
-    // useEffect(() => {
-    //     // console.log(med);
-    //     if (med) {
-    //         dispatch({ type: "ADD_MED_TO_MEDS",  payload: med })
-    //     }
-    //     return () => {};
-    // }, [med])
 
     if (!user) {
         return (

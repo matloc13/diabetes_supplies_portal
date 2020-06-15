@@ -2,11 +2,11 @@ import { useEffect, useState, useContext } from 'react';
 import BASE_URL from './../constants';
 import Store from '../contexts/Store';
 
-const useGetDeviceItems = (deviceId) => {
+const useGetDeviceItems = () => {
     const { user } = useContext(Store);
     const [devices, setDevices] = useState({});
 
-    const promChanges = async () => {
+    const promChanges = async (deviceId) => {
         try {
             const res = await fetch(`${BASE_URL}/device/${deviceId}/change`, {
                 method: 'GET',
@@ -24,7 +24,7 @@ const useGetDeviceItems = (deviceId) => {
         }
     };
 
-    const promFailures = async () => {
+    const promFailures = async (deviceId) => {
         try {
             const res = await fetch(`${BASE_URL}/device/${deviceId}/failure`, {
                 method: 'GET',
@@ -41,7 +41,7 @@ const useGetDeviceItems = (deviceId) => {
         }
     };
 
-    const promAquired = async () => {
+    const promAquired = async (deviceId) => {
         try {
             const res = await fetch(`${BASE_URL}/device/${deviceId}/aquire`, {
                 method: 'GET',
@@ -59,10 +59,10 @@ const useGetDeviceItems = (deviceId) => {
         }
     };
 
-    const getAll = async () => {
-        const changes = await promChanges();
-        const failures = await promFailures();
-        const aquires = await promAquired();
+    const getAll = async (deviceId) => {
+        const changes = await promChanges(deviceId);
+        const failures = await promFailures(deviceId);
+        const aquires = await promAquired(deviceId);
 
         await new Promise((resolve) => {
             if (changes && failures && aquires) {
@@ -78,14 +78,14 @@ const useGetDeviceItems = (deviceId) => {
         });
     };
 
-    useEffect(() => {
-        if (deviceId) {
-            getAll();
-        }
-        return () => {};
-    }, [deviceId]);
+    // useEffect(() => {
+    //     if (deviceId) {
+    //         getAll();
+    //     }
+    //     return () => {};
+    // }, [deviceId]);
 
-    return { devices };
+    return { devices, getAll };
 };
 
 export default useGetDeviceItems;

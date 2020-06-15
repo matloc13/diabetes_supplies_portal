@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NewItem from './../newItem/NewItem';
 import ItemForm from './../form/ItemForm';
+import useGetDeviceItems from './../../utilHooks/useGetDeviceItems';
 
-const DeviceAquired = ({ deviceId, aquired }) => {
+const DeviceAquired = ({ deviceId, aquired, update }) => {
     const [formReveal, setFormReveal] = useState(false);
-    // const { devices } = useGetDeviceItems(deviceId);
+    const { getAll } = useGetDeviceItems();
     const handleClick = () => {
         return setFormReveal(true);
     };
+
+    useEffect(() => {
+        getAll(deviceId);
+        return () => {};
+    }, []);
+
+    useEffect(() => {
+        getAll(deviceId);
+        update();
+        return () => {};
+    }, [formReveal, aquired]);
 
     return (
         <>

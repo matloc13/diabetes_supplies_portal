@@ -10,7 +10,7 @@ const DeviceProfile = ({ deviceId }) => {
     const { user, curDev } = useContext(Store);
     const [load, setLoad] = useState({});
     const [reveal, setReveal] = useState(false);
-    const { devices } = useGetDeviceItems(deviceId);
+    const { devices, getAll } = useGetDeviceItems();
     const {} = useGetDeviceInfo(load);
 
     useEffect(() => {
@@ -20,6 +20,7 @@ const DeviceProfile = ({ deviceId }) => {
                 token: user.token,
                 deviceId,
             });
+            getAll(deviceId);
         }
 
         return () => {};
@@ -27,6 +28,9 @@ const DeviceProfile = ({ deviceId }) => {
 
     const revealForm = () => {
         setReveal(!reveal);
+    };
+    const update = () => {
+        getAll(deviceId);
     };
 
     const currentTransmitterId = (curDev) => {
@@ -108,11 +112,26 @@ const DeviceProfile = ({ deviceId }) => {
             )}
 
             <Router>
-                <DeviceFailures path="dFailure" deviceId={deviceId} failures={devices.failures} />
+                <DeviceFailures
+                    path="dFailure"
+                    update={update}
+                    deviceId={deviceId}
+                    failures={devices.failures}
+                />
 
-                <DeviceChanges path="dChange" deviceId={deviceId} changes={devices.changes} />
+                <DeviceChanges
+                    path="dChange"
+                    update={update}
+                    deviceId={deviceId}
+                    changes={devices.changes}
+                />
 
-                <DeviceAquired path="dAquire" deviceId={deviceId} aquired={devices.aquires} />
+                <DeviceAquired
+                    path="dAquire"
+                    update={update}
+                    deviceId={deviceId}
+                    aquired={devices.aquires}
+                />
             </Router>
         </main>
     );

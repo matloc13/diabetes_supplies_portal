@@ -21,9 +21,10 @@ const ItemForm = ({ formType, reveal, deviceId }) => {
         note: ' ',
     });
 
-    const bundleSubmit = () => {
+    const bundleSubmit = async () => {
         setForm(formInfo);
-        setUrl(`${deviceId}/add/${type}`);
+        await setUrl(`${deviceId}/add/${type}`);
+        await reveal(false);
     };
 
     const handleSubmit = (e) => {

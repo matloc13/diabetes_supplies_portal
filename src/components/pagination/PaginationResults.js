@@ -1,10 +1,15 @@
-import React, { useContext, useState, useEffect } from 'react';
-import usePagination from './../../utilHooks/usePagination'
+import React, { useContext, useState, useEffect, useRef } from 'react';
+
 import FadeIn from 'react-fade-in';
 
-const PaginationResults = ({ array, pl,  }) => {
-    const { findRange, findPages, infiniteScroll } = usePagination(array) 
+const PaginationResults = ({ array, page }) => {
+    const [eleObserver, setEleObserver] = useState(null);
+    // const {  infiniteScroll,  outputResult, page,  } = usePagination(array, pl) 
+    // console.log('outputResult', outputResult)
+    // console.log('infiniteScroll', infiniteScroll)
+    // console.log('searchPageInfo', searchPageInfo)
     // const observer = useRef(new IntersectionObserver((entries) => {
+    //     console.log('entries', entries)
     //   const first = entries[0];
     //   console.log(first);
     //   if (first.isIntersecting) {
@@ -12,9 +17,9 @@ const PaginationResults = ({ array, pl,  }) => {
     //   }
     // }, {threshold: 1}));
     // console.log(array);
-    const [show, setShow] = useState(false);
-    const [p, setP] = useState({ page: 0, pageLength: pl, pages: findPages(), range: findRange()})
-    // const [eleObserver, setEleObserver] = useState(null);
+    // const [show, setShow] = useState(false);
+// setEleObserver(document.querySelector('.item'));
+  
 
     // useEffect(() => {
     //   const currentElement = eleObserver;
@@ -35,7 +40,7 @@ const PaginationResults = ({ array, pl,  }) => {
 
 
     return (
-        <div className="search-results-container">
+        <>
             {/* <ul className='list'>
                 {array[page - 1]
                     ? array[page - 1].map((ele, i) => {
@@ -49,8 +54,8 @@ const PaginationResults = ({ array, pl,  }) => {
                            
    
             </ul> */}
-            <ul className="item-list">
-            {array.map((ele, i) => {
+            <ul className="list" id="iList">
+            {array[page - 1] ? array[page - 1].map((ele, i) => {
                 return (
                     <li key={i} className="item">
                         <h3>{ele.item}</h3>
@@ -61,9 +66,9 @@ const PaginationResults = ({ array, pl,  }) => {
                         </div>
                     </li>
                 );
-            })}
+            }):''}
         </ul>
-        </div>
+</>
     );
 };
 export default PaginationResults;

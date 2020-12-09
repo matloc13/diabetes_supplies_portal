@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import NewItem from './../newItem/NewItem';
 import ItemForm from './../form/ItemForm';
 import useGetDeviceItems from './../../utilHooks/useGetDeviceItems';
-
+import usePagination from './../../utilHooks/usePagination'
+import { PaginationResults } from './../pagination/index'
 const DeviceChanges = ({ deviceId, changes, update }) => {
+    const {  infiniteScroll,  outputResult, page,  } = usePagination(changes, 5) 
     const [formReveal, setFormReveal] = useState(false);
     const { getAll } = useGetDeviceItems();
     // console.log('changes', changes);
@@ -29,7 +31,7 @@ const DeviceChanges = ({ deviceId, changes, update }) => {
                 {formReveal ? (
                     <ItemForm formType={'change'} reveal={setFormReveal} deviceId={deviceId} />
                 ) : (
-                    <PaginationResults array={changes} pl={15}/>
+                    <PaginationResults array={outputResult} page={page}/>
                     // <ul className="item-list">
                     //     {changes.map((ele, i) => {
                     //         return (

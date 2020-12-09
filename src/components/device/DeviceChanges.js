@@ -29,20 +29,21 @@ const DeviceChanges = ({ deviceId, changes, update }) => {
                 {formReveal ? (
                     <ItemForm formType={'change'} reveal={setFormReveal} deviceId={deviceId} />
                 ) : (
-                    <ul className="item-list">
-                        {changes.map((ele, i) => {
-                            return (
-                                <li key={i} className="item">
-                                    <h3>{ele.item}</h3>
-                                    <span>{ele.date.replace(/T.*$/g, '')}</span>
-                                    <div>
-                                        <p>{ele.note}</p>
-                                        <p className="sensorId">{ele.sensorId}</p>
-                                    </div>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                    <PaginationResults array={changes} pl={15}/>
+                    // <ul className="item-list">
+                    //     {changes.map((ele, i) => {
+                    //         return (
+                    //             <li key={i} className="item">
+                    //                 <h3>{ele.item}</h3>
+                    //                 <span>{ele.date.replace(/T.*$/g, '')}</span>
+                    //                 <div>
+                    //                     <p>{ele.note}</p>
+                    //                     <p className="sensorId">{ele.sensorId}</p>
+                    //                 </div>
+                    //             </li>
+                    //         );
+                    //     })}
+                    // </ul>
                 )}
 
                 <b className="space" />
